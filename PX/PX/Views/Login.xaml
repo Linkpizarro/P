@@ -4,7 +4,7 @@
              x:Class="PX.Views.Login">
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="VISTA LOGIN"
+            <Label Text="VISTA LOGIN "
                 VerticalOptions="CenterAndExpand" 
                 HorizontalOptions="CenterAndExpand" />
         </StackLayout>
