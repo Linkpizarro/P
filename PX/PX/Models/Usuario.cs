@@ -7,5 +7,7 @@ namespace PX.Models
     public class Usuario
     {
         public String Nombre { get; set; }
+
+
     }
 }
