@@ -5,8 +5,14 @@
     <ContentPage.Content>
         <StackLayout>
             <Label Text="VISTA LOGIN "
-                VerticalOptions="CenterAndExpand" 
                 HorizontalOptions="CenterAndExpand" />
+            <StackLayout>
+                <Label Text="Usuario" HorizontalOptions="CenterAndExpand"/>
+                <Entry />
+                <Label Text="Password" HorizontalOptions="CenterAndExpand"/>
+                <Entry />
+                <Button Text="Iniciar sesion"></Button>
+            </StackLayout>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
