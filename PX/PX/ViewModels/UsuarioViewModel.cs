@@ -7,5 +7,6 @@ namespace PX.ViewModels
     public class UsuarioViewModel
     {
 
+
     }
 }
