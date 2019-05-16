@@ -1,4 +1,5 @@
 ﻿using PX.Configuration;
+using PX.Views;
 using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -25,7 +26,10 @@ namespace PX
         {
             InitializeComponent();
 
-            MainPage = new MainPage();
+            //MainPage = new MainPage();
+
+            //MainPage = new ProductosView();
+            MainPage = new LoginView();
         }
 
         protected override void OnStart()

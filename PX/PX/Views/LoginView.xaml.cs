@@ -15,6 +15,14 @@ namespace PX.Views
         public LoginView()
         {
             InitializeComponent();
+
+            this.btn.Clicked += Btn_Clicked;
+        }
+
+        private void Btn_Clicked(object sender, EventArgs e)
+        {
+            ProductosView view = new ProductosView();
+            Navigation.PushModalAsync(view);
         }
     }
 }

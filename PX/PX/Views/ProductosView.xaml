@@ -1,15 +1,31 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Name="vistaproductos"
              xmlns:local="clr-namespace:PX"
-             BindingContext="{}"
+             BindingContext="{Binding Source={x:Static local:App.Locator}, Path=ProductosViewModel}"
              x:Class="PX.Views.ProductosView">
     <ContentPage.Content>
         <StackLayout Margin="0,30,0,0">
-            <Label Text="Productos View"
+            <Label Text="Lista de Productos"
+                FontSize="40" TextColor="Red" 
                 HorizontalOptions="CenterAndExpand" />
-            <ListView>
-                
+            <ListView ItemsSource="{Binding Productos}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout Orientation="Horizontal">
+                                <Label Text="{Binding Nombre}"
+                                       HorizontalOptions="StartAndExpand"/>
+                                <Label Text="{Binding PrecioUnidad}"
+                                       HorizontalOptions="End" />
+                                <Button Text="Detalles"
+                                        CommandParameter="{Binding .}" 
+                                        Command="{Binding BindingContext.MostrarDetalles, Source={x:Reference vistaproductos}}" />
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
             </ListView>
         </StackLayout>
     </ContentPage.Content>
