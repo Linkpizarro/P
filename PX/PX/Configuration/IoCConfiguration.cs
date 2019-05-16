@@ -1,4 +1,5 @@
 ﻿using Autofac;
+using PX.Services;
 using PX.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -15,6 +16,7 @@ namespace PX.Configuration
             //REGISTRAMOS TODOS LOS TIPOS DE INYECCION DE DEPENDENCIAS
             //O CLASES QUE NECESITAMOS QUE NOS DEVUELVA EL CONTENEDOR
             //CLASES COMUNICADAS ENTRE OTRAS
+            builder.RegisterType<SessionService>().SingleInstance();
             builder.RegisterType<ProductosViewModel>();
             this.container = builder.Build();
         }
@@ -26,6 +28,13 @@ namespace PX.Configuration
             get
             {
                 return this.container.Resolve<ProductosViewModel>();
+            }
+        }
+        public SessionService SessionService
+        {
+            get
+            {
+                return this.container.Resolve<SessionService>();
             }
         }
     }

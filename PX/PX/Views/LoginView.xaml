@@ -1,17 +1,22 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="PX.Views.Login">
+             xmlns:viewmodels="clr-namespace:PX.ViewModels"
+             x:Class="PX.Views.LoginView">
+    <ContentPage.BindingContext>
+        <viewmodels:UsuarioViewModel/>
+    </ContentPage.BindingContext>
     <ContentPage.Content>
         <StackLayout>
             <Label Text="VISTA LOGIN "
                 HorizontalOptions="CenterAndExpand" />
             <StackLayout>
                 <Label Text="Usuario" HorizontalOptions="CenterAndExpand"/>
-                <Entry />
+                <Entry Text="{Binding Usuario.Username}"/>
                 <Label Text="Password" HorizontalOptions="CenterAndExpand"/>
-                <Entry />
-                <Button Text="Iniciar sesion"></Button>
+                <Entry Text="{Binding Usuario.Password}" />
+                <Button Text="Iniciar sesion" Command="{Binding IniciarSesion}"></Button>
+                <Label Text="{Binding Mensaje}"/>
             </StackLayout>
         </StackLayout>
     </ContentPage.Content>

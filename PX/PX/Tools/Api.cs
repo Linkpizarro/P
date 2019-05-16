@@ -84,7 +84,7 @@ namespace PX.Tools
                 HttpResponseMessage responseMessage = await client.DeleteAsync(peticion);
             }
         }
-        public async Task<String> GetToken(String usuario, String password)
+        public static async Task<String> GetToken(String usuario, String password)
         {
             using (HttpClient client = new HttpClient())
             {

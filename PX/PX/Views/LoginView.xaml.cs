@@ -10,9 +10,9 @@ using Xamarin.Forms.Xaml;
 namespace PX.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class Login : ContentPage
+    public partial class LoginView : ContentPage
     {
-        public Login()
+        public LoginView()
         {
             InitializeComponent();
         }
