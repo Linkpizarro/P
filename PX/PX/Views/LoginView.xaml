@@ -18,7 +18,7 @@
                 <Label Text="Password" HorizontalOptions="CenterAndExpand"/>
                 <Entry Text="{Binding Usuario.Password}" HorizontalOptions="Center" WidthRequest="300" />
                 <Label Text="{Binding Mensaje}" TextColor="Red" />
-                <Button Text="Iniciar sesion" Command="{Binding IniciarSesion}" HorizontalOptions="Center" WidthRequest="300" ></Button>
+                <Button Text="Iniciar sesion" Command="{Binding IniciarSesion}" HorizontalOptions="Center" WidthRequest="300"></Button>
                 <Button Text="Registrarse" Command="{Binding Registrarte}" HorizontalOptions="Center" WidthRequest="300" />
             </StackLayout>
         </StackLayout>
