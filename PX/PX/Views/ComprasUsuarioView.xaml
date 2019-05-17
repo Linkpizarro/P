@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewmodels="clr-namespace:PX.ViewModels"
+             x:Class="PX.Views.ComprasUsuarioView">
+    <ContentPage.BindingContext>
+        <viewmodels:VentasViewModel/>
+    </ContentPage.BindingContext>
+    <ContentPage.Content>
+        <StackLayout>
+            <Label Text="Compras usuario"
+                HorizontalOptions="CenterAndExpand" />
+            <ListView ItemsSource="{Binding Ventas}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout Orientation="Horizontal">
+                                <Label Text="{Binding Fecha}"
+                                       HorizontalOptions="StartAndExpand"/>
+                                <!--<Button Text="Detalles compra"
+                                        CommandParameter="{Binding .}" 
+                                        Command="{Binding BindingContext.MostrarDetalles, Source={x:Reference vistaproductos}}" />-->
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
