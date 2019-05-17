@@ -1,15 +1,19 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <MasterDetailPage xmlns="http://xamarin.com/schemas/2014/forms"
                   xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-                  xmlns:views="clr-namespace:PX.Views"
+                  xmlns:viewmodels="clr-namespace:PX.ViewModels"
                   x:Class="PX.Views.NavbarView"
                  NavigationPage.HasNavigationBar="False">
     <MasterDetailPage.Master>
         <ContentPage Title="Menu">
+            <ContentPage.BindingContext>
+                <viewmodels:ItemsMenuViewModel/>
+            </ContentPage.BindingContext>
             <ContentPage.Content>
                 <StackLayout BackgroundColor="#4528A2">
                     <SearchBar TextColor="White"/>
-                    <ListView x:Name="Menu" RowHeight="30">
+                    <ListView x:Name="Menu" RowHeight="30"
+                              ItemsSource="{Binding Items}">
                         <ListView.ItemTemplate>
                             <DataTemplate>
                                 <ViewCell>
