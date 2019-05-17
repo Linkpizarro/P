@@ -17,7 +17,6 @@
                 <Entry Text="{Binding Usuario.Password}" />
                 <Button Text="Iniciar sesion" Command="{Binding IniciarSesion}"></Button>
                 <Label Text="{Binding Mensaje}"/>
-                <Button x:Name="btn" />
             </StackLayout>
         </StackLayout>
     </ContentPage.Content>
