@@ -23,14 +23,20 @@ namespace PX.ViewModels
             this.Items = new ObservableCollection<ItemMenuPage>();
             this.Items.Clear();
             var home = new ItemMenuPage() { Title = "Home", TypePage = typeof(MainPage) };
+            this.Items.Add(home);
             var products = new ItemMenuPage() { Title = "Productos", TypePage = typeof(ProductosView) };
+            this.Items.Add(products);
             if (App.Locator.SessionService.Cadena == null)
             {
                 var login = new ItemMenuPage() { Title = "Login", TypePage = typeof(LoginView) };
                 this.Items.Add(login);
             }
-            this.Items.Add(home);
-            this.Items.Add(products);
+            else
+            {
+                var orders = new ItemMenuPage() { Title = "Tus Pedidos", TypePage = typeof(ComprasUsuarioView) };
+                this.Items.Add(orders);
+            }
+           
         }
         private ObservableCollection<ItemMenuPage> _Items;
         public ObservableCollection<ItemMenuPage> Items
