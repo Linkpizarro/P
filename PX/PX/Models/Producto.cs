@@ -27,5 +27,20 @@ namespace PX.Models
         public String Color { get; set; }
         [JsonProperty("Estado")]
         public String Estado { get; set; }
+
+
+        //-----PRUEBA-----/
+        public int Cantidad { get; set; }
+
+        private decimal _Subtotal;
+        public decimal Subtotal
+        {
+            get
+            {
+                _Subtotal = this.Cantidad * (decimal)this.PrecioUnidad;
+                return _Subtotal;
+            }
+        }
+        //-----FIN PRUEBA-----/
     }
 }

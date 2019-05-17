@@ -17,6 +17,10 @@ namespace PX.ViewModels
             if (Producto == null)
             {
                 this.Producto = new Producto();
+
+                //-----PRUEBA-----/
+                this.CantidadProducto = 1;
+                //-----FIN PRUEBA-----/
             }
         }
 
@@ -52,11 +56,13 @@ namespace PX.ViewModels
 
                     //await this.repo.InsertarDoctor(this.Doctor);
                     SessionService session = App.Locator.SessionService;
-                    List<Carrito> articulos = session.Articulos;
-                    Carrito articulo = new Carrito(this.Producto, this.CantidadProducto);
-                    articulos.Add(articulo);
+                    //List<Carrito> articulos = session.Articulos;
+                    List<Producto> articulos = session.Articulos;
+                    //Carrito articulo = new Carrito(this.Producto, this.CantidadProducto);
+                    articulos.Add(this.Producto);
 
-                    MessagingCenter.Send<CarritoViewModel>(App.Locator.CarritoViewModel, "INSERTAR");
+                    //MessagingCenter.Send<CarritoViewModel>(App.Locator.CarritoViewModel, "INSERTAR");
+                    MessagingCenter.Send<ProductosViewModel>(App.Locator.ProductosViewModel, "INSERTAR");
 
                     //NOTA PERSONAL: PRUEBA de mostrar mensaje después de insertar un objeto!!!
                     await Application.Current.MainPage.DisplayAlert("Alerta", "Articulo añadido al carrito correctamente", "OK");

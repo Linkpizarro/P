@@ -26,8 +26,14 @@
                 <Label Text="{Binding Producto.PrecioUnidad}" />
 
                 <Entry Text="{Binding BindingContext.CantidadProducto, Source={x:Reference vistadetallesproducto}}" />
-                <Button Text="Añadir" 
+                
+                <Stepper Maximum="20" Minimum="1" Increment="1" x:Name="Cantidad" Value="{Binding CantidadProducto}" HorizontalOptions="StartAndExpand"/>
+                <Label HorizontalOptions="End" BindingContext="{x:Reference Cantidad}" Text="{Binding Value}"/>
+                <!--<Button Text="Añadir" 
                         Command="{Binding BindingContext.GuadarProducto, Source={x:Reference vistadetallesproducto}}"
+                         HorizontalOptions="FillAndExpand" />-->
+                <Button Text="Añadir" 
+                        Command="{Binding GuadarProducto}"
                          HorizontalOptions="FillAndExpand" />
             </StackLayout>
         </Grid>        

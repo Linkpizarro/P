@@ -22,6 +22,9 @@
                                 <Button Text="Detalles"
                                         CommandParameter="{Binding .}" 
                                         Command="{Binding BindingContext.MostrarDetalles, Source={x:Reference vistaproductos}}" />
+                                <Button Text="Añadir"
+                                        CommandParameter="{Binding .}" 
+                                        Command="{Binding BindingContext.AnadirProducto, Source={x:Reference vistaproductos}}" />
                             </StackLayout>
                         </ViewCell>
                     </DataTemplate>

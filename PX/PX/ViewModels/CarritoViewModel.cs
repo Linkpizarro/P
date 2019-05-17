@@ -11,10 +11,14 @@ namespace PX.ViewModels
 {
     public class CarritoViewModel : ViewModelBase
     {
-        //RepositoryDoctores repo;
 
         public CarritoViewModel()
         {
+            if (Articulos == null)
+            {
+                //this.Articulos = new ObservableCollection<Carrito>();
+            }
+
             //this.repo = new RepositoryDoctores();
             //NOTA: "Task.Run()" carga en el CONSTRUCTOR un metodo ASINCRONO
             Task.Run(async () => {
@@ -29,13 +33,27 @@ namespace PX.ViewModels
 
         private async Task CargarArticulos()
         {
-            List<Carrito> lista = App.Locator.SessionService.Articulos;
-            this.Articulos = new ObservableCollection<Carrito>(lista);
+            //List<Carrito> lista = App.Locator.SessionService.Articulos;
+            //this.Articulos = new ObservableCollection<Carrito>(lista);
+
+            List<Producto> lista = App.Locator.SessionService.Articulos;
+            this.Articulos = new ObservableCollection<Producto>(lista);
         }
 
 
-        private ObservableCollection<Carrito> _Articulos;
-        public ObservableCollection<Carrito> Articulos
+        //private ObservableCollection<Carrito> _Articulos;
+        //public ObservableCollection<Carrito> Articulos
+        //{
+        //    get { return this._Articulos; }
+        //    set
+        //    {
+        //        this._Articulos = value;
+        //        OnPropertyChange("Articulos");
+        //    }
+        //}
+
+        private ObservableCollection<Producto> _Articulos;
+        public ObservableCollection<Producto> Articulos
         {
             get { return this._Articulos; }
             set

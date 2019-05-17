@@ -18,6 +18,7 @@ namespace PX.Configuration
             //CLASES COMUNICADAS ENTRE OTRAS
             builder.RegisterType<SessionService>().SingleInstance();
             builder.RegisterType<ProductosViewModel>();
+            builder.RegisterType<CarritoViewModel>();
             builder.RegisterType<ItemsMenuViewModel>().SingleInstance();
             this.container = builder.Build();
         }
