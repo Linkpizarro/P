@@ -1,7 +1,15 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewmodels="clr-namespace:PX.ViewModels"
+             x:Name="vistadetallesproducto"
+             xmlns:local="clr-namespace:PX"
+             BindingContext="{Binding Source={x:Static local:App.Locator}, Path=ProductoViewModel}"
              x:Class="PX.Views.DetallesProductoView">
+    <!-- NOTA: PRUEBA -->
+    <!--<ContentPage.BindingContext>
+        <viewmodels:ProductoViewModel />
+    </ContentPage.BindingContext>-->
     <ContentPage.Content>
         <Grid Margin="0,30,0,0">
             <Grid.RowDefinitions>
@@ -11,11 +19,16 @@
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
             <StackLayout Margin="0,30,0,0">
-                <Label Text="Detalles de Doctor"
+                <Label Text="Detalles de Producto"
                 FontSize="40" TextColor="Red" 
                 HorizontalOptions="CenterAndExpand" />
                 <Label Text="{Binding Producto.Nombre}" />
                 <Label Text="{Binding Producto.PrecioUnidad}" />
+
+                <Entry Text="{Binding BindingContext.CantidadProducto, Source={x:Reference vistadetallesproducto}}" />
+                <Button Text="Añadir" 
+                        Command="{Binding BindingContext.GuadarProducto, Source={x:Reference vistadetallesproducto}}"
+                         HorizontalOptions="FillAndExpand" />
             </StackLayout>
         </Grid>        
     </ContentPage.Content>

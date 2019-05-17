@@ -30,11 +30,20 @@ namespace PX.Configuration
                 return this.container.Resolve<ProductosViewModel>();
             }
         }
+
         public SessionService SessionService
         {
             get
             {
                 return this.container.Resolve<SessionService>();
+            }
+        }
+
+        public CarritoViewModel CarritoViewModel
+        {
+            get
+            {
+                return this.container.Resolve<CarritoViewModel>();
             }
         }
     }
