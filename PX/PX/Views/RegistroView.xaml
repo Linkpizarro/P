@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewmodels="clr-namespace:PX.ViewModels"
+             x:Class="PX.Views.RegistroView">
+    <ContentPage.BindingContext>
+        <viewmodels:UsuarioViewModel/>
+    </ContentPage.BindingContext>
+    <ContentPage.Content>
+        <StackLayout>
+            <Label Text="VISTA REGISTRO"
+                HorizontalOptions="CenterAndExpand" />
+            <StackLayout>
+                <Label Text="Usuario" HorizontalOptions="CenterAndExpand"/>
+                <Entry Text="{Binding Usuario.Username}"/>
+                <Label Text="Password" HorizontalOptions="CenterAndExpand"/>
+                <Entry Text="{Binding Usuario.Password}" />
+                <Label Text="Nombre" HorizontalOptions="CenterAndExpand"/>
+                <Entry Text="{Binding Usuario.Nombre}"/>
+                <Label Text="Email" HorizontalOptions="CenterAndExpand"/>
+                <Entry Text="{Binding Usuario.Email}" />
+                <Label Text="Apellidos" HorizontalOptions="CenterAndExpand"/>
+                <Entry Text="{Binding Usuario.Apellidos}" />
+                <Label Text="Pais" HorizontalOptions="CenterAndExpand"/>
+                <Entry Text="{Binding Usuario.Pais}"/>
+                <Label Text="Ciudad" HorizontalOptions="CenterAndExpand"/>
+                <Entry Text="{Binding Usuario.Ciudad}" />
+                <Button Text="Registrarte" Command="{Binding RegistrarUsuario}"/>
+                <Label Text="{Binding Mensaje}"/>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

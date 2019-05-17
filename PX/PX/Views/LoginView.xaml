@@ -9,14 +9,17 @@
     <ContentPage.Content>
         <StackLayout>
             <Label Text="VISTA LOGIN "
+                   FontSize="Large"
                 HorizontalOptions="CenterAndExpand" />
-            <StackLayout>
+            <StackLayout VerticalOptions="CenterAndExpand" BackgroundColor="LightGray"
+                         HorizontalOptions="Center" WidthRequest="320" HeightRequest="300">
                 <Label Text="Usuario" HorizontalOptions="CenterAndExpand"/>
-                <Entry Text="{Binding Usuario.Username}"/>
+                <Entry Text="{Binding Usuario.Username}" HorizontalOptions="Center" WidthRequest="300"/>
                 <Label Text="Password" HorizontalOptions="CenterAndExpand"/>
-                <Entry Text="{Binding Usuario.Password}" />
-                <Button Text="Iniciar sesion" Command="{Binding IniciarSesion}"></Button>
-                <Label Text="{Binding Mensaje}"/>
+                <Entry Text="{Binding Usuario.Password}" HorizontalOptions="Center" WidthRequest="300" />
+                <Label Text="{Binding Mensaje}" TextColor="Red" />
+                <Button Text="Iniciar sesion" Command="{Binding IniciarSesion}" HorizontalOptions="Center" WidthRequest="300" ></Button>
+                <Button Text="Registrarse" Command="{Binding Registrarte}" HorizontalOptions="Center" WidthRequest="300" />
             </StackLayout>
         </StackLayout>
     </ContentPage.Content>

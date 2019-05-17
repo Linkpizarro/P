@@ -53,9 +53,34 @@ namespace PX.ViewModels
                         session.Cadena = token;
                         session.Usuario = this.Usuario;
                         MessagingCenter.Send<ItemsMenuViewModel>(App.Locator.ItemsMenuViewModel, "login");
+                        MainPage view = new MainPage();
+                        await Application.Current.MainPage.Navigation.PushAsync(view);
                     }
                    /* await this.repo.InsertarDoctor(this.Doctor);
                     MessagingCenter.Send<DoctoresViewModel>(App.Locator.DoctoresViewModel, "INSERTAR");*/
+                });
+            }
+        }
+        public Command RegistrarUsuario
+        {
+            get
+            {
+                return new Command(async () =>
+                {
+                    await repo.RegistrarUsuario(this.Usuario);
+                    await Application.Current.MainPage.Navigation.PopModalAsync();
+                });
+            }
+        }
+
+        public Command Registrarte
+        {
+            get
+            {
+                return new Command(async () =>
+                {
+                    RegistroView view = new RegistroView();
+                    await Application.Current.MainPage.Navigation.PushModalAsync(view);
                 });
             }
         }
