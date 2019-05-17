@@ -25,11 +25,7 @@ namespace PX
         public App()
         {
             InitializeComponent();
-
-            //MainPage = new MainPage();
-
-            //MainPage = new ProductosView();
-            MainPage = new LoginView();
+            MainPage = new NavigationPage(new NavbarView());
         }
 
         protected override void OnStart()
