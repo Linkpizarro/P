@@ -18,6 +18,7 @@ namespace PX.Configuration
             //CLASES COMUNICADAS ENTRE OTRAS
             builder.RegisterType<SessionService>().SingleInstance();
             builder.RegisterType<ProductosViewModel>();
+            builder.RegisterType<ItemsMenuViewModel>().SingleInstance();
             this.container = builder.Build();
         }
 
@@ -44,6 +45,14 @@ namespace PX.Configuration
             get
             {
                 return this.container.Resolve<CarritoViewModel>();
+            }
+        }
+
+        public ItemsMenuViewModel ItemsMenuViewModel
+        {
+            get
+            {
+                return this.container.Resolve<ItemsMenuViewModel>();
             }
         }
     }
