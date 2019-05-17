@@ -17,12 +17,23 @@ namespace PX.Views
         public NavbarView()
         {
             InitializeComponent();
-            Detail = new NavigationPage((Page)Activator.CreateInstance(typeof(MainPage)))
-            {
+            this.Items = new List<ItemMenuPage>();
+            this.LoadPages();
+            Detail = new NavigationPage((Page)Activator.CreateInstance(typeof(MainPage))) {
                 BarBackgroundColor = Color.FromHex("#4528A2")
             };
             IsPresented = false;
             this.Menu.ItemSelected += ChangePage;
+        }
+        private void LoadPages()
+        {
+            var home = new ItemMenuPage() { Title = "Home",TypePage= typeof(MainPage) };
+            var products = new ItemMenuPage() { Title = "Productos",TypePage=typeof(ProductosView)};
+            var login = new ItemMenuPage() { Title = "Login", TypePage = typeof(LoginView) };
+            this.Items.Add(home);
+            this.Items.Add(login);
+            this.Items.Add(products);
+            this.Menu.ItemsSource = this.Items;
         }
         private void ChangePage(object sender, SelectedItemChangedEventArgs e)
         {

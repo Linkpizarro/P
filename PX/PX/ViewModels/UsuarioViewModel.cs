@@ -2,7 +2,6 @@
 using PX.Models;
 using PX.Repositories;
 using PX.Services;
-using PX.Views;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -52,7 +51,6 @@ namespace PX.ViewModels
                         SessionService session = App.Locator.SessionService;
                         session.Cadena = token;
                         session.Usuario = this.Usuario;
-                        MessagingCenter.Send<ItemsMenuViewModel>(App.Locator.ItemsMenuViewModel, "login");
                     }
                    /* await this.repo.InsertarDoctor(this.Doctor);
                     MessagingCenter.Send<DoctoresViewModel>(App.Locator.DoctoresViewModel, "INSERTAR");*/
