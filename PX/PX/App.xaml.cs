@@ -25,7 +25,7 @@ namespace PX
         public App()
         {
             InitializeComponent();
-            MainPage = new NavigationPage(new NavbarView());
+            MainPage = new NavigationPage(new NavbarView()); 
         }
 
         protected override void OnStart()
