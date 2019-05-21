@@ -3,8 +3,9 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
               x:Name="vistacarrito"
              xmlns:local="clr-namespace:PX"
-             BindingContext="{Binding Source={x:Static local:App.Locator}, Path=ProductosViewModel}"
+             BindingContext="{Binding Source={x:Static local:App.Locator}, Path=SessionService}"
              x:Class="PX.Views.CarritoView">
+    <!-- NOTA: BindingContext="{Binding Source={x:Static local:App.Locator}, Path=ProductosViewModel}" -->
     <ContentPage.Content>
         <StackLayout Margin="0,30,0,0">
             <Label Text="Carrito de la Compra"

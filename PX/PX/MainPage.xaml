@@ -9,86 +9,150 @@
         <viewmodels:ProductosViewModel/>
     </ContentPage.BindingContext>
     <ContentPage.Content>
-        <StackLayout>
-            <controls:CarouselView ItemsSource="{Binding Productos}"
-                                       Position="{Binding Position,Mode=TwoWay}"
-                                       HeightRequest="200">
-                    <controls:CarouselView.ItemTemplate>
-                        <DataTemplate>
-                            <StackLayout>
-                                <Grid HorizontalOptions="CenterAndExpand">
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition Height="*"/>
-                                        <RowDefinition Height="*"/>
-                                    </Grid.RowDefinitions>
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="200"/>
-                                        <ColumnDefinition Width="*"/>
-                                    </Grid.ColumnDefinitions>
-                                    <!--<Image Source="{Binding UrlImagen}" Grid.Column="0" Grid.Row="0"
+        
+        <ScrollView Orientation="Vertical" HorizontalOptions="FillAndExpand"
+                    VerticalOptions="FillAndExpand">
+            
+            <StackLayout HorizontalOptions="FillAndExpand"
+                         VerticalOptions="FillAndExpand" Padding="10,10,10,10">
+                
+                <StackLayout>
+                    <Label Text="Novedades"/>
+                </StackLayout>
+                
+                <StackLayout HeightRequest="200">
+                    <controls:CarouselView ItemsSource="{Binding Productos}"
+                                       Position="{Binding Position,Mode=TwoWay}">
+                        <controls:CarouselView.ItemTemplate>
+                            <DataTemplate>
+                                <StackLayout>
+                                    <Grid HorizontalOptions="CenterAndExpand">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="100"/>
+                                            <RowDefinition Height="100"/>
+                                        </Grid.RowDefinitions>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="200"/>
+                                            <ColumnDefinition Width="*"/>
+                                        </Grid.ColumnDefinitions>
+                                        <!--<Image Source="{Binding UrlImagen}" Grid.Column="0" Grid.Row="0"
                                                Grid.RowSpan="2"
                                            WidthRequest="150"
                                            HeightRequest="200"/>-->
-                                    <BoxView Grid.Column="0" Grid.Row="0" Grid.RowSpan="2" WidthRequest="200"
+                                        <BoxView Grid.Column="0" Grid.Row="0" Grid.RowSpan="2" WidthRequest="200"
                                              HeightRequest="200"
                                              MinimumHeightRequest="200" MinimumWidthRequest="200" BackgroundColor="Orange" HorizontalOptions="FillAndExpand"
                                              VerticalOptions="FillAndExpand"/>
-                                    <Label Text="{Binding Nombre}" Grid.Column="1" Grid.Row="0"
-                                           TextColor="Black" FontSize="22" HorizontalTextAlignment="Center"
-                                           HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"
-                                           MinimumHeightRequest="100" MinimumWidthRequest="150" HeightRequest="100"/>
-                                    <StackLayout Grid.Column="1" Grid.Row="1" Orientation="Horizontal" HorizontalOptions="CenterAndExpand" 
-                                                 VerticalOptions="CenterAndExpand"
-                                                 HeightRequest="100" MinimumHeightRequest="100" MinimumWidthRequest="150">
-                                        <Label Text="Precio: " TextColor="Black" FontSize="18"/>
-                                        <Label Text="{Binding PrecioUnidad, StringFormat='\{0\} €'}" 
-                                           TextColor="Orange" FontSize="30" HorizontalTextAlignment="Start" FontAttributes="Bold"/>
-                                    </StackLayout>
-
-                                </Grid>
-                            </StackLayout>
-                        </DataTemplate>
-                    </controls:CarouselView.ItemTemplate>
-                </controls:CarouselView>
-                <ListView ItemsSource="{Binding Productos }"
-                          RowHeight="200"
-                          Margin="10,10,10,10">
-                    <ListView.ItemTemplate>
-                        <DataTemplate>
-                            <ViewCell>
-                                <StackLayout>
-                                    <Grid HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
-                                        <Grid.RowDefinitions>
-                                            <RowDefinition Height="*"/>
-                                            <RowDefinition Height="*"/>
-                                        </Grid.RowDefinitions>
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="150"/>
-                                            <ColumnDefinition Width="*"/>
-                                        </Grid.ColumnDefinitions>
-                                        <Image Source="{Binding UrlImagen}" Grid.Column="0" Grid.Row="0"
-                                               Grid.RowSpan="2"
-                                           WidthRequest="150"
-                                           HeightRequest="200"/>
-                                        <BoxView Grid.Column="0" Grid.Row="0" Grid.RowSpan="2" WidthRequest="150"
-                                             HeightRequest="200" BackgroundColor="Orange" HorizontalOptions="FillAndExpand"
-                                             VerticalOptions="FillAndExpand"/>
                                         <Label Text="{Binding Nombre}" Grid.Column="1" Grid.Row="0"
-                                            TextColor="Black" FontSize="30" HorizontalTextAlignment="Center"
-                                           HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
-                                        <StackLayout Grid.Column="1" Grid.Row="1" Orientation="Horizontal" HorizontalOptions="CenterAndExpand" 
-                                                 VerticalOptions="CenterAndExpand">
+                                           TextColor="Black" FontSize="22" HorizontalTextAlignment="Center"
+                                           HorizontalOptions="CenterAndExpand" MinimumHeightRequest="100" />
+                                        <StackLayout Grid.Column="1" Grid.Row="1" Orientation="Horizontal" HorizontalOptions="FillAndExpand"  
+                                                 HeightRequest="100" MinimumHeightRequest="100" >
                                             <Label Text="Precio: " TextColor="Black" FontSize="18"/>
                                             <Label Text="{Binding PrecioUnidad, StringFormat='\{0\} €'}" 
-                                           TextColor="Orange" FontSize="20" HorizontalTextAlignment="Start" FontAttributes="Bold"/>
+                                           TextColor="Orange" FontSize="30" HorizontalTextAlignment="Start" FontAttributes="Bold"/>
                                         </StackLayout>
-
                                     </Grid>
                                 </StackLayout>
-                            </ViewCell>
-                        </DataTemplate>
-                    </ListView.ItemTemplate>
-                </ListView>
+                            </DataTemplate>
+                        </controls:CarouselView.ItemTemplate>
+                    </controls:CarouselView>
+                </StackLayout>
+             
+                <StackLayout>
+                    <Label Text="Recomendados"/>
+                </StackLayout>
+
+                <StackLayout HeightRequest="300">
+                    <ListView ItemsSource="{Binding Productos }" RowHeight="100">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <ViewCell>
+                                    <StackLayout>
+                                        <Grid HorizontalOptions="CenterAndExpand">
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="50"/>
+                                                <RowDefinition Height="50"/>
+                                            </Grid.RowDefinitions>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="100"/>
+                                                <ColumnDefinition Width="*"/>
+                                            </Grid.ColumnDefinitions>
+                                            <!--<Image Source="{Binding UrlImagen}" Grid.Column="0" Grid.Row="0"
+                                            Grid.RowSpan="2"
+                                        WidthRequest="150"
+                                        HeightRequest="200"/>-->
+                                            <BoxView Grid.Column="0" Grid.Row="0" Grid.RowSpan="2" WidthRequest="100"
+                                            HeightRequest="100" MinimumHeightRequest="100"
+                                            MinimumWidthRequest="100" BackgroundColor="Orange" 
+                                            HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"/>
+                                            <Label Text="{Binding Nombre}" Grid.Column="1" Grid.Row="0"
+                                        TextColor="Black" FontSize="18" HorizontalTextAlignment="Center"
+                                        HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"
+                                        MinimumHeightRequest="50" MinimumWidthRequest="150" HeightRequest="50"/>
+                                            <StackLayout Grid.Column="1" Grid.Row="1" Orientation="Horizontal" HorizontalOptions="CenterAndExpand" 
+                                                VerticalOptions="CenterAndExpand"
+                                                HeightRequest="50" MinimumHeightRequest="50" MinimumWidthRequest="150">
+                                                <Label Text="Precio: " TextColor="Black" FontSize="12"/>
+                                                <Label Text="{Binding PrecioUnidad, StringFormat='\{0\} €'}" 
+                                        TextColor="Orange" FontSize="20" HorizontalTextAlignment="Start" FontAttributes="Bold"/>
+                                            </StackLayout>
+                                        </Grid>
+                                    </StackLayout>
+                                </ViewCell>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </StackLayout>
+
+                <StackLayout>
+                    <Label Text="Categorías"/>
+                </StackLayout>
+                
+                <StackLayout HeightRequest="600">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="200"/>
+                            <RowDefinition Height="200"/>
+                            <RowDefinition Height="200"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <StackLayout Grid.Row="0" Grid.Column="0">
+                            <BoxView BackgroundColor="Red" HorizontalOptions="FillAndExpand"
+                                 VerticalOptions="FillAndExpand"/>
+                        </StackLayout>
+                        <StackLayout Grid.Row="0" Grid.Column="1">
+                            <BoxView BackgroundColor="Green" HorizontalOptions="FillAndExpand"
+                                 VerticalOptions="FillAndExpand"/>
+                        </StackLayout>
+                        <StackLayout Grid.Row="1" Grid.Column="0">
+                            <BoxView BackgroundColor="Yellow" HorizontalOptions="FillAndExpand"
+                                 VerticalOptions="FillAndExpand"/>
+                        </StackLayout>
+                        <StackLayout Grid.Row="1" Grid.Column="1">
+                            <BoxView BackgroundColor="Blue" HorizontalOptions="FillAndExpand"
+                                 VerticalOptions="FillAndExpand"/>
+                        </StackLayout>
+                        <StackLayout Grid.Row="2" Grid.Column="0">
+                            <BoxView BackgroundColor="Purple" HorizontalOptions="FillAndExpand"
+                                 VerticalOptions="FillAndExpand"/>
+                        </StackLayout>
+                        <StackLayout Grid.Row="2" Grid.Column="1">
+                            <BoxView BackgroundColor="Brown" HorizontalOptions="FillAndExpand"
+                                 VerticalOptions="FillAndExpand"/>
+                        </StackLayout>
+                    </Grid>
+                </StackLayout>
+
+                <StackLayout>
+                    
+                </StackLayout>
+                
             </StackLayout>
+            
+        </ScrollView>
+       
     </ContentPage.Content>
 </ContentPage>

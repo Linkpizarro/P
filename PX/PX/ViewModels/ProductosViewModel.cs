@@ -1,6 +1,7 @@
 ﻿using PX.Base;
 using PX.Models;
 using PX.Repositories;
+using PX.Services;
 using PX.Views;
 using System;
 using System.Collections.Generic;
@@ -105,12 +106,18 @@ namespace PX.ViewModels
 
             get
             {
-                //return new Command(async (producto) => {
-                return new Command(async () => {
+                return new Command(async (producto) => {
+                //return new Command(async () => {
                     CarritoView view = new CarritoView();
-                    await Application.Current.MainPage.Navigation.PushModalAsync(view);
-
                     //ProductosViewModel viewmodel = new ProductosViewModel();
+                    //ProductosViewModel viewmodel = App.Locator.ProductosViewModel;
+
+                    SessionService session = App.Locator.SessionService;
+                    session.Articulos.Add(producto as Producto);
+
+                    //view.BindingContext = viewmodel;
+
+                    await Application.Current.MainPage.Navigation.PushModalAsync(view);                    
 
                     MessagingCenter.Subscribe<ProductosViewModel>(this, "INSERTAR", async (sender) => {
                         this.CargarArticulos();
