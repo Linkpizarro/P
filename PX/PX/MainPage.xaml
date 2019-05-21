@@ -3,6 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:PX"
              xmlns:controls="clr-namespace:Xamarin.Forms;assembly=Xamarin.Forms.CarouselView"
+             BindingContext="{Binding Source={x:Static local:App.Locator}, Path=ProductosViewModel}"
+             x:Name="VistaHome"
              xmlns:viewmodels="clr-namespace:PX.ViewModels"
              x:Class="PX.MainPage">
     <ContentPage.BindingContext>
@@ -15,13 +17,14 @@
             
             <StackLayout HorizontalOptions="FillAndExpand"
                          VerticalOptions="FillAndExpand" Padding="10,10,10,10">
-                
+
+                <!-- Título Novedades -->
                 <StackLayout>
                     <Label Text="Novedades"/>
                 </StackLayout>
-                
-                <StackLayout HeightRequest="200">
-                    <controls:CarouselView ItemsSource="{Binding Productos}"
+                <!-- Novedades -->
+                <StackLayout HeightRequest="220">
+                    <controls:CarouselView ItemsSource="{Binding Novedades}"
                                        Position="{Binding Position,Mode=TwoWay}">
                         <controls:CarouselView.ItemTemplate>
                             <DataTemplate>
@@ -46,11 +49,15 @@
                                         <Label Text="{Binding Nombre}" Grid.Column="1" Grid.Row="0"
                                            TextColor="Black" FontSize="22" HorizontalTextAlignment="Center"
                                            HorizontalOptions="CenterAndExpand" MinimumHeightRequest="100" />
+                                        <Button Text="Ver Detalles" BackgroundColor="Transparent"
+                                                     CommandParameter="{Binding .}" FontSize="12" TextColor="Black"
+                                                     Command="{Binding BindingContext.MostrarDetalles, Source={x:Reference VistaHome}}"
+                                                     HeightRequest="20" />
                                         <StackLayout Grid.Column="1" Grid.Row="1" Orientation="Horizontal" HorizontalOptions="FillAndExpand"  
                                                  HeightRequest="100" MinimumHeightRequest="100" >
                                             <Label Text="Precio: " TextColor="Black" FontSize="18"/>
                                             <Label Text="{Binding PrecioUnidad, StringFormat='\{0\} €'}" 
-                                           TextColor="Orange" FontSize="30" HorizontalTextAlignment="Start" FontAttributes="Bold"/>
+                                                   TextColor="Orange" FontSize="30" HorizontalTextAlignment="Start" FontAttributes="Bold"/>
                                         </StackLayout>
                                     </Grid>
                                 </StackLayout>
@@ -58,13 +65,13 @@
                         </controls:CarouselView.ItemTemplate>
                     </controls:CarouselView>
                 </StackLayout>
-             
+                <!-- Título Destacados -->
                 <StackLayout>
                     <Label Text="Recomendados"/>
                 </StackLayout>
-
+                <!-- Destacados -->
                 <StackLayout HeightRequest="300">
-                    <ListView ItemsSource="{Binding Productos }" RowHeight="100">
+                    <ListView ItemsSource="{Binding Destacados }" RowHeight="100">
                         <ListView.ItemTemplate>
                             <DataTemplate>
                                 <ViewCell>
@@ -104,11 +111,11 @@
                         </ListView.ItemTemplate>
                     </ListView>
                 </StackLayout>
-
+                <!-- Título Categorías -->
                 <StackLayout>
                     <Label Text="Categorías"/>
                 </StackLayout>
-                
+                <!-- Categorías -->
                 <StackLayout HeightRequest="600">
                     <Grid>
                         <Grid.RowDefinitions>
@@ -145,7 +152,7 @@
                         </StackLayout>
                     </Grid>
                 </StackLayout>
-
+                <!-- Espacio vacío para dejar margen abajo automáticamente -->
                 <StackLayout>
                     
                 </StackLayout>

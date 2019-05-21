@@ -6,6 +6,7 @@ using PX.Views;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Forms;
@@ -25,6 +26,11 @@ namespace PX.ViewModels
             });
 
 
+
+
+
+
+
             //-----PRUEBA-----/
             if (Articulos == null)
             {
@@ -33,12 +39,65 @@ namespace PX.ViewModels
             //-----FIN PRUEBA-----/
         }
 
+        
+
+        //Destacados
+        private void CargarDestacados()
+        {
+            List<Producto> destacados = new List<Producto>();
+            Random r1 = new Random();
+            int index = 0;
+            for (int i = 0; i < 3; i++)
+            {
+                index = r1.Next(0, this.Productos.Count - 1);
+                Producto producto = new Producto();
+                producto = this.Productos[index];
+                if(destacados.SingleOrDefault(d => d.IdProducto == producto.IdProducto) == null)
+                {
+                    destacados.Add(producto);
+                }
+                else
+                {
+                    i--;
+                }
+            }
+            this.Destacados = new ObservableCollection<Producto>(destacados);
+        }
+        private ObservableCollection<Producto> _Destacados;
+        public ObservableCollection<Producto> Destacados
+        {
+            get { return this._Destacados; }
+            set
+            {
+                this._Destacados = value;
+                OnPropertyChange("Destacados");
+            }
+        }
+
+        //Novedades
+        private void CargarNovedades()
+        {
+            this.Novedades = new ObservableCollection<Producto>(this.Productos.OrderBy(p => p.Fecha).Take(5).ToList());
+        }
+        private ObservableCollection<Producto> _Novedades;
+        public ObservableCollection<Producto> Novedades
+        {
+            get { return this._Novedades; }
+            set
+            {
+                this._Novedades = value;
+                OnPropertyChange("Novedades");
+            }
+        }
+
+        //Productos
         private async Task CargarProductos()
         {
             List<Producto> lista = await this.repo.GetProductos();
             this.Productos = new ObservableCollection<Producto>(lista);
+            this.CargarNovedades();
+            this.CargarDestacados();
         }
-
         private ObservableCollection<Producto> _Productos;
         public ObservableCollection<Producto> Productos
         {
@@ -50,6 +109,7 @@ namespace PX.ViewModels
             }
         }
 
+        //Comandos
         public Command MostrarDetalles
         {
             get
@@ -62,10 +122,9 @@ namespace PX.ViewModels
                     view.BindingContext = viewmodel;
 
                     await Application.Current.MainPage.Navigation.PushModalAsync(view);
-                });                
+                });
             }
         }
-
 
         //-----PRUEBA-----/
         private async Task CargarArticulos()
