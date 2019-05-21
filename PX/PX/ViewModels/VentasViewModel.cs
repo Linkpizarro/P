@@ -67,8 +67,8 @@ namespace PX.ViewModels
                     DetallesVentaViewModel viewmodel = new DetallesVentaViewModel();
                     Venta v = venta as Venta;
                     String token = App.Locator.SessionService.Cadena;
-                    ObservableCollection<DetallesVenta> detallesventa = await this.repo.GetDetallesVentaUsuario(v.IdVenta, token);
 
+                    ObservableCollection<DetallesVenta> detallesventa = await this.repo.GetDetallesVentaUsuario(v.IdVenta, token);
                     viewmodel.DetallesVenta = detallesventa as ObservableCollection<DetallesVenta>;
                     view.BindingContext = viewmodel;
                     await Application.Current.MainPage.Navigation.PushModalAsync(view);
