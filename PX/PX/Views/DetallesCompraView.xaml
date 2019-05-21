@@ -1,29 +1,24 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Name="vistacompras"
-             xmlns:local="clr-namespace:PX"
-             BindingContext="{Binding Source={x:Static local:App.Locator}, Path=VentasViewModel}"
              xmlns:viewmodels="clr-namespace:PX.ViewModels"
-             x:Class="PX.Views.ComprasUsuarioView">
+             x:Class="PX.Views.DetallesCompraView">
     <ContentPage.BindingContext>
-        <viewmodels:VentasViewModel/>
+        <viewmodels:DetallesVentaViewModel/>
     </ContentPage.BindingContext>
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="Compras usuario"
+            <Label Text="Detalles Compra usuario!!"
                 HorizontalOptions="CenterAndExpand" />
-            <Label Text="{Binding Mensaje}" TextColor="Red"/>
-            <ListView ItemsSource="{Binding Ventas}">
+            <ListView ItemsSource="{Binding DetallesVenta}">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
                             <StackLayout Orientation="Horizontal">
-                                <Label Text="{Binding Fecha}"
+                                <Label Text="{Binding IdProducto}"
                                        HorizontalOptions="StartAndExpand"/>
-                                <Button Text="Detalles compra"
-                                        CommandParameter="{Binding .}" 
-                                        Command="{Binding BindingContext.MostrarCompra, Source={x:Reference vistacompras}}" />
+                                <Label Text="{Binding Cantidad}"
+                                       HorizontalOptions="StartAndExpand"/>
                             </StackLayout>
                         </ViewCell>
                     </DataTemplate>
