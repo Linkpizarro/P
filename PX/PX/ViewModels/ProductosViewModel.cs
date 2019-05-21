@@ -24,18 +24,15 @@ namespace PX.ViewModels
             Task.Run(async () => {
                 await this.CargarProductos();                
             });
-
-
-
-
+                                 
 
 
 
             //-----PRUEBA-----/
-            if (Articulos == null)
-            {
-                this.CargarArticulos();
-            }            
+            //if (Articulos == null)
+            //{
+            //    this.CargarArticulos();
+            //}            
             //-----FIN PRUEBA-----/
         }
 
@@ -97,6 +94,8 @@ namespace PX.ViewModels
             this.Productos = new ObservableCollection<Producto>(lista);
             this.CargarNovedades();
             this.CargarDestacados();
+
+            this.CargarArticulos();
         }
         private ObservableCollection<Producto> _Productos;
         public ObservableCollection<Producto> Productos
@@ -127,10 +126,10 @@ namespace PX.ViewModels
         }
 
         //-----PRUEBA-----/
-        private async Task CargarArticulos()
+        private void CargarArticulos()
         {
             List<Producto> lista = App.Locator.SessionService.Articulos;
-            this.Productos = new ObservableCollection<Producto>(lista);
+            this.Articulos = new ObservableCollection<Producto>(lista);
         }
 
         private ObservableCollection<Producto> _Articulos;
@@ -171,8 +170,32 @@ namespace PX.ViewModels
                     //ProductosViewModel viewmodel = new ProductosViewModel();
                     //ProductosViewModel viewmodel = App.Locator.ProductosViewModel;
 
+                    //-----NOTA: PRUEBA AÑADIR PRODUCTOS AL CARRITO-----/
+                    //NOTA: FUNCIONA!!!
                     SessionService session = App.Locator.SessionService;
-                    session.Articulos.Add(producto as Producto);
+                    Producto prod = producto as Producto;
+                    if (session.Articulos.SingleOrDefault(p => p.IdProducto == prod.IdProducto) == null)
+                    {
+                        prod.Cantidad = 1;
+                        session.Articulos.Add(prod);
+                    }
+                    else
+                    {
+                        prod.Cantidad++;
+                    }
+
+                    //NOTA: NO FUNCIONA!!!
+                    //Producto prod = producto as Producto;
+                    //if (this.Articulos.SingleOrDefault(p => p.IdProducto == prod.IdProducto) == null)
+                    //{
+                    //    prod.Cantidad = 1;
+                    //    this.Articulos.Add(prod);
+                    //}
+                    //else
+                    //{
+                    //    prod.Cantidad++;
+                    //}
+                    //-----FIN PRUEBA-----/
 
                     //view.BindingContext = viewmodel;
 
@@ -190,6 +213,22 @@ namespace PX.ViewModels
                 });
             }
         }
+
+        //public Command EliminarProducto
+        //{
+        //    get
+        //    {
+        //        return new Command(async (producto) =>
+        //        {
+        //            SessionService session = App.Locator.SessionService;
+        //            Producto prod = producto as Producto;
+        //            if (session.Articulos.SingleOrDefault(p => p.IdProducto == prod.IdProducto) == null)
+        //            {
+        //                session.Articulos.Remove(prod);
+        //            }
+        //        });
+        //    }
+        //}
         //-----FIN PRUEBA-----/
     }
 }

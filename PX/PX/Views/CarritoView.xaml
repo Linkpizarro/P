@@ -5,30 +5,99 @@
              xmlns:local="clr-namespace:PX"
              BindingContext="{Binding Source={x:Static local:App.Locator}, Path=SessionService}"
              x:Class="PX.Views.CarritoView">
-    <!-- NOTA: BindingContext="{Binding Source={x:Static local:App.Locator}, Path=ProductosViewModel}" -->
+    <!-- NOTA: BindingContext="{Binding Source={x:Static local:App.Locator}, Path=ProductosViewModel}"-> NO FUNICIONA!!! -->
+    <!-- NOTA: BindingContext="{Binding Source={x:Static local:App.Locator}, Path=SessionService}" -> FUNICIONA!!! -->
     <ContentPage.Content>
         <StackLayout Margin="0,30,0,0">
             <Label Text="Carrito de la Compra"
                 FontSize="40" TextColor="Red" 
                 HorizontalOptions="CenterAndExpand" />
+            <StackLayout>
+                <Grid HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="20" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Label Grid.Column="0" Grid.Row="0"
+                        Text="Imagen" TextColor="Red" 
+                        HorizontalOptions="CenterAndExpand" />
+                    <Label Grid.Column="1" Grid.Row="0"
+                        Text="Producto" TextColor="Red" 
+                        HorizontalOptions="CenterAndExpand" />
+                    <Label Grid.Column="2" Grid.Row="0"
+                        Text="Precio" TextColor="Red" 
+                        HorizontalOptions="CenterAndExpand" />
+                    <Label Grid.Column="3" Grid.Row="0"
+                        Text="Cantidad" TextColor="Red" 
+                        HorizontalOptions="CenterAndExpand" />
+                    <Label Grid.Column="4" Grid.Row="0"
+                        Text="Subtotal" TextColor="Red" 
+                        HorizontalOptions="CenterAndExpand" />
+                    <Label Grid.Column="5" Grid.Row="0"
+                        Text="Eliminar" TextColor="Red" 
+                        HorizontalOptions="CenterAndExpand" />
+                </Grid>
+            </StackLayout>
             <ListView ItemsSource="{Binding Articulos}">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
                             <StackLayout Orientation="Horizontal">
-                                <Label Text="{Binding Nombre}"
-                                       HorizontalOptions="StartAndExpand"/>
-                                <Label Text="{Binding PrecioUnidad}"
-                                       HorizontalOptions="End" />
+                                <Grid HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="*" />
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
+                                </Grid>
+                                <!--<BoxView Grid.Column="0" Grid.Row="0" WidthRequest="50"
+                                             HeightRequest="50" BackgroundColor="Orange" HorizontalOptions="FillAndExpand"
+                                             VerticalOptions="FillAndExpand"/>-->
+                                <Label Grid.Column="0" Grid.Row="0"
+                                       Text="Imagen"
+                                       HorizontalTextAlignment="Center"
+                                       HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
+                                <Label Grid.Column="1" Grid.Row="0"
+                                       Text="{Binding Nombre}"
+                                       HorizontalTextAlignment="Center"
+                                       HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
+                                <Label Grid.Column="2" Grid.Row="0"
+                                       Text="{Binding PrecioUnidad}"
+                                       HorizontalTextAlignment="Center"
+                                       HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" />
                                 
-                                <Entry Text="{}" />
-                                <!--<Stepper Maximum="20" Minimum="1" Increment="1" x:Name="Cantidad" Value="{Binding CantidadProducto}" HorizontalOptions="StartAndExpand"/>
-                                <Label HorizontalOptions="End" BindingContext="{x:Reference Cantidad}" Text="{Binding Value}"/>-->
-                                <Stepper Maximum="20" Minimum="1" Increment="1" x:Name="Cant" Value="{Binding Cantidad}" HorizontalOptions="StartAndExpand"/>
-                                <Label HorizontalOptions="End" BindingContext="{x:Reference Cant}" Text="{Binding Value}"/>
-                                <!--<Button Text="Detalles"
+                                <StackLayout Grid.Column="3" Grid.Row="0" Orientation="Horizontal" HorizontalOptions="CenterAndExpand" 
+                                                 VerticalOptions="CenterAndExpand">
+                                    <!--<Entry Text="{}" />-->
+                                    <!--<Stepper Maximum="20" Minimum="1" Increment="1" x:Name="Cantidad" Value="{Binding CantidadProducto}" HorizontalOptions="StartAndExpand"/>
+                                    <Label HorizontalOptions="End" BindingContext="{x:Reference Cantidad}" Text="{Binding Value}"/>-->
+                                    <Stepper Maximum="20" Minimum="1" Increment="1" x:Name="Cant" Value="{Binding Cantidad}" HorizontalOptions="StartAndExpand"/>
+                                    <Label HorizontalOptions="End" BindingContext="{x:Reference Cant}" Text="{Binding Value}"/>
+                                </StackLayout>
+                                
+                                <Label Grid.Column="4" Grid.Row="0"
+                                       Text="{Binding Subtotal}"
+                                       HorizontalTextAlignment="Center"
+                                       HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
+                                
+                                <!--<Button Text="[x]"
                                         CommandParameter="{Binding .}" 
-                                        Command="{Binding BindingContext.MostrarDetalles, Source={x:Reference vistaproductos}}" />-->
+                                        Command="{Binding BindingContext.EliminarProducto, Source={x:Reference vistacarrito}}" />-->
+                                <Button Text="[x]"
+                                        CommandParameter="{Binding .}" 
+                                        Command="{Binding BindingContext.EliminarProducto, Source={x:Reference vistacarrito}}" />
                             </StackLayout>
                         </ViewCell>
                     </DataTemplate>
