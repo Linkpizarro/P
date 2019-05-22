@@ -16,10 +16,12 @@ namespace PX.ViewModels
     public class VentasViewModel : ViewModelBase
     {
         RepositoryVentas repo;
+        RepositoryProductos repoProductos;
 
         public VentasViewModel()
         {
             this.repo = new RepositoryVentas();
+            this.repoProductos = new RepositoryProductos();
             //NOTA: "Task.Run()" carga en el CONSTRUCTOR un metodo ASINCRONO
             Task.Run(async () => {
                 await this.CargarVentas();
@@ -69,7 +71,14 @@ namespace PX.ViewModels
                     String token = App.Locator.SessionService.Cadena;
 
                     ObservableCollection<DetallesVenta> detallesventa = await this.repo.GetDetallesVentaUsuario(v.IdVenta, token);
-                    viewmodel.DetallesVenta = detallesventa as ObservableCollection<DetallesVenta>;
+                    ObservableCollection<Carrito> prodscompra = new ObservableCollection<Carrito>();
+                    foreach(DetallesVenta dv in detallesventa)
+                    {
+                        Producto p = await this.repoProductos.BuscarProducto(dv.IdProducto);
+                        Carrito pcomprado = new Carrito(p, dv.Cantidad);
+                        prodscompra.Add(pcomprado);
+                    }
+                    viewmodel.DetallesVenta = prodscompra;
                     view.BindingContext = viewmodel;
                     await Application.Current.MainPage.Navigation.PushModalAsync(view);
                 });

@@ -14,8 +14,8 @@ namespace PX.ViewModels
 
         }
 
-        private ObservableCollection<DetallesVenta> _DetallesVenta;
-        public ObservableCollection<DetallesVenta> DetallesVenta
+        private ObservableCollection<Carrito> _DetallesVenta;
+        public ObservableCollection<Carrito> DetallesVenta
         {
             get { return this._DetallesVenta; }
             set

@@ -22,5 +22,11 @@ namespace PX.Repositories
             List<Producto> productos = await Api.CallApi<List<Producto>>(peticion, null);
             return productos;
         }
+        public async Task<Producto> BuscarProducto(String idproducto)
+        {
+            String peticion = Api.uriapi + "api/productos/"+idproducto;
+            Producto producto = await Api.CallApi<Producto>(peticion, null);
+            return producto;
+        }
     }
 }
