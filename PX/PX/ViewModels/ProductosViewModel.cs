@@ -188,19 +188,30 @@ namespace PX.ViewModels
                     if (this.Articulos.SingleOrDefault(p => p.IdProducto == prod.IdProducto) == null)
                     {
                         prod.Cantidad = 1;
+                        this.CantidadProducto = prod.Cantidad;
+                        prod.Subtotal = prod.Cantidad * (decimal)prod.PrecioUnidad; //NOTA: Añadido porque se ha comentado en "Producto.cs" la propiedad extendida "Subtotal".
+                        this.SubtotalProducto = prod.Subtotal;
                         this.Articulos.Add(prod);
+
+                        this.TotalCarrito = Articulos.Sum(p => (int)p.Subtotal);
                     }
                     else
                     {
                         prod.Cantidad++;
+                        this.CantidadProducto = prod.Cantidad;
+                        prod.Subtotal = prod.Cantidad * (decimal)prod.PrecioUnidad; //NOTA: Añadido porque se ha comentado en "Producto.cs" la propiedad extendida "Subtotal".
+                        this.SubtotalProducto = prod.Subtotal;
+
+                        this.TotalCarrito = Articulos.Sum(p => (int)p.Subtotal);
                     }
                     //-----FIN PRUEBA-----/
 
                     //view.BindingContext = viewmodel;
 
-                    await Application.Current.MainPage.Navigation.PushModalAsync(view);                    
+                    await Application.Current.MainPage.Navigation.PushModalAsync(view);
 
-                    MessagingCenter.Subscribe<ProductosViewModel>(this, "INSERTAR", async (sender) => {
+                    MessagingCenter.Subscribe<ProductosViewModel>(this, "INSERTAR", async (sender) =>
+                    {
                         this.CargarArticulos();
                     });
 
@@ -220,9 +231,35 @@ namespace PX.ViewModels
                 return new Command(async (producto) =>
                 {
                     Producto prod = producto as Producto;
-                    this.Articulos.Remove(prod);                    
+                    this.Articulos.Remove(prod);
+                    
+                    this.TotalCarrito = Articulos.Sum(p => (int)p.Subtotal);
                 });
             }
+        }
+
+        private int _CantidadProducto;
+        public int CantidadProducto
+        {
+            get { return this._CantidadProducto; }
+            set
+            {
+                this._CantidadProducto = value;
+                OnPropertyChange("CantidadProducto");
+            }
+
+        }
+
+        private decimal _SubtotalProducto;
+        public decimal SubtotalProducto
+        {
+            get { return this._SubtotalProducto; }
+            set
+            {
+                this._SubtotalProducto = value;
+                OnPropertyChange("SubtotalProducto");
+            }
+
         }
 
         private int _TotalCarrito;

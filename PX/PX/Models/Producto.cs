@@ -32,15 +32,17 @@ namespace PX.Models
         //-----PRUEBA-----/
         public int Cantidad { get; set; }
 
-        private decimal _Subtotal;
-        public decimal Subtotal
-        {
-            get
-            {
-                _Subtotal = this.Cantidad * (decimal)this.PrecioUnidad;
-                return _Subtotal;
-            }
-        }
+        //private decimal _Subtotal;
+        //public decimal Subtotal
+        //{
+        //    get
+        //    {
+        //        _Subtotal = this.Cantidad * (decimal)this.PrecioUnidad;
+        //        return _Subtotal;
+        //    }
+        //}
+
+        public decimal Subtotal { get; set; }
         //-----FIN PRUEBA-----/
     }
 }
