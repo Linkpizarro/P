@@ -1,4 +1,5 @@
 ﻿using PX.Models;
+using PX.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -27,10 +28,27 @@ namespace PX.Views
         private void ChangePage(object sender, SelectedItemChangedEventArgs e)
         {
             ItemMenuPage select = (ItemMenuPage)e.SelectedItem;
-            Detail = new NavigationPage((Page)Activator.CreateInstance(select.TypePage)) {
-                BarBackgroundColor = Color.FromHex("#4528A2")
-            };
-            IsPresented = false;
+            if(select.Title == "Logout")
+            {
+                App.Locator.SessionService.Usuario = null;
+                App.Locator.SessionService.Cadena = null;
+                App.Locator.SessionService.Articulos = null;
+                MessagingCenter.Send<ItemsMenuViewModel>(App.Locator.ItemsMenuViewModel, "login");
+            }
+            else
+            {
+                Detail = new NavigationPage((Page)Activator.CreateInstance(select.TypePage))
+                {
+                    BarBackgroundColor = Color.FromHex("#4528A2")
+                };
+                IsPresented = false;
+            }
+           
+        }
+
+        private async void Carrito_Clicked(object sender, EventArgs e)
+        {
+            await Application.Current.MainPage.Navigation.PushModalAsync(new CarritoView());
         }
     }
 }

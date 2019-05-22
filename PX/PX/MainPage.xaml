@@ -56,7 +56,8 @@
                                         </StackLayout>
                                         <StackLayout Grid.Column="1" Grid.Row="1" HorizontalOptions="FillAndExpand"
                                                      VerticalOptions="FillAndExpand">
-                                            <Button Text="Ver Detalles" CommandParameter="{Binding .}" FontSize="12" TextColor="Black"
+                                            <Button Text="Ver Detalles" FontSize="12" TextColor="Black"
+                                                    CommandParameter="{Binding .}"
                                                     Command="{Binding BindingContext.MostrarDetalles, Source={x:Reference VistaHome}}"
                                                     BackgroundColor="Transparent" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
                                         </StackLayout>
@@ -72,7 +73,8 @@
                 </StackLayout>
                 <!-- Destacados -->
                 <StackLayout HeightRequest="300">
-                    <ListView ItemsSource="{Binding Destacados }" RowHeight="100">
+                    <ListView ItemsSource="{Binding Destacados }" RowHeight="100" 
+                              ItemSelected="ListView_ItemSelected">
                         <ListView.ItemTemplate>
                             <DataTemplate>
                                 <ViewCell>
@@ -91,19 +93,19 @@
                                         WidthRequest="150"
                                         HeightRequest="200"/>-->
                                             <BoxView Grid.Column="0" Grid.Row="0" Grid.RowSpan="2" WidthRequest="100"
-                                            HeightRequest="100" MinimumHeightRequest="100"
-                                            MinimumWidthRequest="100" BackgroundColor="Orange" 
-                                            HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"/>
+                                                     HeightRequest="100" MinimumHeightRequest="100"
+                                                     MinimumWidthRequest="100" BackgroundColor="Orange" 
+                                                     HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"/> 
                                             <Label Text="{Binding Nombre}" Grid.Column="1" Grid.Row="0"
-                                        TextColor="Black" FontSize="18" HorizontalTextAlignment="Center"
-                                        HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"
-                                        MinimumHeightRequest="50" MinimumWidthRequest="150" HeightRequest="50"/>
+                                                   TextColor="Black" FontSize="18" HorizontalTextAlignment="Center"
+                                                   HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"
+                                                   MinimumHeightRequest="50" MinimumWidthRequest="150" HeightRequest="50"/>
                                             <StackLayout Grid.Column="1" Grid.Row="1" Orientation="Horizontal" HorizontalOptions="CenterAndExpand" 
-                                                VerticalOptions="CenterAndExpand"
-                                                HeightRequest="50" MinimumHeightRequest="50" MinimumWidthRequest="150">
+                                                         VerticalOptions="CenterAndExpand"
+                                                         HeightRequest="50" MinimumHeightRequest="50" MinimumWidthRequest="150">
                                                 <Label Text="Precio: " TextColor="Black" FontSize="12"/>
                                                 <Label Text="{Binding PrecioUnidad, StringFormat='\{0\} €'}" 
-                                        TextColor="Orange" FontSize="20" HorizontalTextAlignment="Start" FontAttributes="Bold"/>
+                                                       TextColor="Orange" FontSize="20" HorizontalTextAlignment="Start" FontAttributes="Bold"/>
                                             </StackLayout>
                                         </Grid>
                                     </StackLayout>

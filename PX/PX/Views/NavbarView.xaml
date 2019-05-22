@@ -3,15 +3,24 @@
                   xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
                   xmlns:viewmodels="clr-namespace:PX.ViewModels"
                   x:Class="PX.Views.NavbarView"
-                 NavigationPage.HasNavigationBar="False">
+                  NavigationPage.HasNavigationBar="False">
+    <MasterDetailPage.ToolbarItems>
+        <ToolbarItem Name="carrito" Order="Primary" Icon="carrito.png" Priority="0" Clicked="Carrito_Clicked"/>
+    </MasterDetailPage.ToolbarItems>
     <MasterDetailPage.Master>
         <ContentPage Title="Menu">
             <ContentPage.BindingContext>
                 <viewmodels:ItemsMenuViewModel/>
             </ContentPage.BindingContext>
             <ContentPage.Content>
-                <StackLayout BackgroundColor="#4528A2">
-                    <SearchBar TextColor="White"/>
+                <StackLayout BackgroundColor="#4528A2" Padding="0,0,0,10">
+                    <StackLayout HorizontalOptions="CenterAndExpand"
+                                 HeightRequest="120">
+                        <Image Source="logo.png" HeightRequest="120"/>
+                    </StackLayout>
+                    <StackLayout>
+                        <SearchBar TextColor="White"/>
+                    </StackLayout>
                     <ListView x:Name="Menu" RowHeight="30"
                               ItemsSource="{Binding Items}">
                         <ListView.ItemTemplate>

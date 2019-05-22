@@ -35,6 +35,8 @@ namespace PX.ViewModels
             {
                 var orders = new ItemMenuPage() { Title = "Tus Pedidos", TypePage = typeof(ComprasUsuarioView) };
                 this.Items.Add(orders);
+                var logout = new ItemMenuPage() { Title = "Logout", TypePage = typeof(String) };
+                this.Items.Add(logout);
             }
            
         }
