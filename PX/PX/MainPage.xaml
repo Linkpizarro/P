@@ -16,23 +16,24 @@
                     VerticalOptions="FillAndExpand">
             
             <StackLayout HorizontalOptions="FillAndExpand"
-                         VerticalOptions="FillAndExpand" Padding="10,10,10,10">
+                         VerticalOptions="FillAndExpand" Padding="10,15,10,10">
 
                 <!-- Título Novedades -->
                 <StackLayout>
-                    <Label Text="Novedades"/>
+                    <Label Text="Novedades" TextColor="#4528A2" FontSize="22"/>
                 </StackLayout>
                 <!-- Novedades -->
-                <StackLayout HeightRequest="220">
+                <StackLayout HeightRequest="200">
                     <controls:CarouselView ItemsSource="{Binding Novedades}"
                                        Position="{Binding Position,Mode=TwoWay}">
                         <controls:CarouselView.ItemTemplate>
                             <DataTemplate>
-                                <StackLayout>
-                                    <Grid HorizontalOptions="CenterAndExpand">
+                                <StackLayout BackgroundColor="LightGray" HorizontalOptions="FillAndExpand"
+                                             VerticalOptions="CenterAndExpand">
+                                    <Grid HorizontalOptions="CenterAndExpand" VerticalOptions="FillAndExpand">
                                         <Grid.RowDefinitions>
-                                            <RowDefinition Height="100"/>
-                                            <RowDefinition Height="100"/>
+                                            <RowDefinition Height="150"/>
+                                            <RowDefinition Height="50"/>
                                         </Grid.RowDefinitions>
                                         <Grid.ColumnDefinitions>
                                             <ColumnDefinition Width="200"/>
@@ -42,22 +43,22 @@
                                                Grid.RowSpan="2"
                                            WidthRequest="150"
                                            HeightRequest="200"/>-->
-                                        <BoxView Grid.Column="0" Grid.Row="0" Grid.RowSpan="2" WidthRequest="200"
-                                             HeightRequest="200"
-                                             MinimumHeightRequest="200" MinimumWidthRequest="200" BackgroundColor="Orange" HorizontalOptions="FillAndExpand"
-                                             VerticalOptions="FillAndExpand"/>
-                                        <Label Text="{Binding Nombre}" Grid.Column="1" Grid.Row="0"
-                                           TextColor="Black" FontSize="22" HorizontalTextAlignment="Center"
-                                           HorizontalOptions="CenterAndExpand" MinimumHeightRequest="100" />
-                                        <Button Text="Ver Detalles" BackgroundColor="Transparent"
-                                                     CommandParameter="{Binding .}" FontSize="12" TextColor="Black"
-                                                     Command="{Binding BindingContext.MostrarDetalles, Source={x:Reference VistaHome}}"
-                                                     HeightRequest="20" />
-                                        <StackLayout Grid.Column="1" Grid.Row="1" Orientation="Horizontal" HorizontalOptions="FillAndExpand"  
-                                                 HeightRequest="100" MinimumHeightRequest="100" >
-                                            <Label Text="Precio: " TextColor="Black" FontSize="18"/>
-                                            <Label Text="{Binding PrecioUnidad, StringFormat='\{0\} €'}" 
-                                                   TextColor="Orange" FontSize="30" HorizontalTextAlignment="Start" FontAttributes="Bold"/>
+                                        <BoxView Grid.Column="0" Grid.Row="0" Grid.RowSpan="2" BackgroundColor="Orange" HorizontalOptions="FillAndExpand"
+                                                 VerticalOptions="FillAndExpand"/>
+                                        <StackLayout Grid.Column="1" Grid.Row="0"  Padding="10,40,10,0">
+                                            <Label Text="{Binding Nombre}" TextColor="Black" FontSize="22" HorizontalTextAlignment="Center"
+                                                   HorizontalOptions="FillAndExpand"/>
+                                            <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" >
+                                                    <Label Text="Precio: " TextColor="Black" FontSize="18" Margin="0,18,0,-18"/>
+                                                    <Label Text="{Binding PrecioUnidad, StringFormat='\{0\} €'}" 
+                                                       TextColor="Orange" FontSize="35" HorizontalTextAlignment="Start" FontAttributes="Bold"/>
+                                            </StackLayout>
+                                        </StackLayout>
+                                        <StackLayout Grid.Column="1" Grid.Row="1" HorizontalOptions="FillAndExpand"
+                                                     VerticalOptions="FillAndExpand">
+                                            <Button Text="Ver Detalles" CommandParameter="{Binding .}" FontSize="12" TextColor="Black"
+                                                    Command="{Binding BindingContext.MostrarDetalles, Source={x:Reference VistaHome}}"
+                                                    BackgroundColor="Transparent" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
                                         </StackLayout>
                                     </Grid>
                                 </StackLayout>
@@ -67,7 +68,7 @@
                 </StackLayout>
                 <!-- Título Destacados -->
                 <StackLayout>
-                    <Label Text="Recomendados"/>
+                    <Label Text="Recomendados" TextColor="#4528A2" FontSize="22"/>
                 </StackLayout>
                 <!-- Destacados -->
                 <StackLayout HeightRequest="300">
@@ -113,7 +114,7 @@
                 </StackLayout>
                 <!-- Título Categorías -->
                 <StackLayout>
-                    <Label Text="Categorías"/>
+                    <Label Text="Categorías" TextColor="#4528A2" FontSize="22"/>
                 </StackLayout>
                 <!-- Categorías -->
                 <StackLayout HeightRequest="600">
@@ -127,28 +128,28 @@
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
                         <StackLayout Grid.Row="0" Grid.Column="0">
-                            <BoxView BackgroundColor="Red" HorizontalOptions="FillAndExpand"
-                                 VerticalOptions="FillAndExpand"/>
+                            <Button BackgroundColor="IndianRed" HorizontalOptions="FillAndExpand"
+                                    VerticalOptions="FillAndExpand" Text="Consolas" />
                         </StackLayout>
                         <StackLayout Grid.Row="0" Grid.Column="1">
-                            <BoxView BackgroundColor="Green" HorizontalOptions="FillAndExpand"
-                                 VerticalOptions="FillAndExpand"/>
+                            <Button BackgroundColor="LightSkyBlue" HorizontalOptions="FillAndExpand"
+                                    VerticalOptions="FillAndExpand" Text="Juegos" />
                         </StackLayout>
                         <StackLayout Grid.Row="1" Grid.Column="0">
-                            <BoxView BackgroundColor="Yellow" HorizontalOptions="FillAndExpand"
-                                 VerticalOptions="FillAndExpand"/>
+                            <Button BackgroundColor=" CadetBlue" HorizontalOptions="FillAndExpand"
+                                    VerticalOptions="FillAndExpand" Text="Accesorios" />
                         </StackLayout>
                         <StackLayout Grid.Row="1" Grid.Column="1">
-                            <BoxView BackgroundColor="Blue" HorizontalOptions="FillAndExpand"
-                                 VerticalOptions="FillAndExpand"/>
+                            <Button BackgroundColor="LightCoral" HorizontalOptions="FillAndExpand"
+                                    VerticalOptions="FillAndExpand" Text="Proximamente" />
                         </StackLayout>
                         <StackLayout Grid.Row="2" Grid.Column="0">
-                            <BoxView BackgroundColor="Purple" HorizontalOptions="FillAndExpand"
-                                 VerticalOptions="FillAndExpand"/>
+                            <Button BackgroundColor="LightPink" HorizontalOptions="FillAndExpand"
+                                    VerticalOptions="FillAndExpand" Text="Proximamente" />
                         </StackLayout>
                         <StackLayout Grid.Row="2" Grid.Column="1">
-                            <BoxView BackgroundColor="Brown" HorizontalOptions="FillAndExpand"
-                                 VerticalOptions="FillAndExpand"/>
+                            <Button BackgroundColor="CornflowerBlue" HorizontalOptions="FillAndExpand"
+                                    VerticalOptions="FillAndExpand" Text="Proximamente" />
                         </StackLayout>
                     </Grid>
                 </StackLayout>
