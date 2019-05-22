@@ -17,7 +17,8 @@ namespace PX.Configuration
             //O CLASES QUE NECESITAMOS QUE NOS DEVUELVA EL CONTENEDOR
             //CLASES COMUNICADAS ENTRE OTRAS
             builder.RegisterType<SessionService>().SingleInstance();
-            builder.RegisterType<ProductosViewModel>();
+            //builder.RegisterType<ProductosViewModel>();
+            builder.RegisterType<ProductosViewModel>().SingleInstance();
             builder.RegisterType<CarritoViewModel>();
             builder.RegisterType<ItemsMenuViewModel>().SingleInstance();
             this.container = builder.Build();

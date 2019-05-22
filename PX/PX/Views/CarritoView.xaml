@@ -1,12 +1,17 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:coverters="clr-namespace:PX.Converters"
               x:Name="vistacarrito"
              xmlns:local="clr-namespace:PX"
-             BindingContext="{Binding Source={x:Static local:App.Locator}, Path=SessionService}"
+             BindingContext="{Binding Source={x:Static local:App.Locator}, Path=ProductosViewModel}"
              x:Class="PX.Views.CarritoView">
-    <!-- NOTA: BindingContext="{Binding Source={x:Static local:App.Locator}, Path=ProductosViewModel}"-> NO FUNICIONA!!! -->
+    <!-- NOTA: BindingContext="{Binding Source={x:Static local:App.Locator}, Path=ProductosViewModel}"-> NOTA: YA NO FUNCIONA: para ello en IoCConfiguration tiene que estar builder.RegisterType<ProductosViewModel>().SingleInstance();!!!!!! -->
     <!-- NOTA: BindingContext="{Binding Source={x:Static local:App.Locator}, Path=SessionService}" -> FUNICIONA!!! -->
+
+    <ContentPage.Resources>
+        <coverters:Subtotal x:Key="subtotal" />
+    </ContentPage.Resources>
     <ContentPage.Content>
         <StackLayout Margin="0,30,0,0">
             <Label Text="Carrito de la Compra"
@@ -83,13 +88,13 @@
                                     <!--<Entry Text="{}" />-->
                                     <!--<Stepper Maximum="20" Minimum="1" Increment="1" x:Name="Cantidad" Value="{Binding CantidadProducto}" HorizontalOptions="StartAndExpand"/>
                                     <Label HorizontalOptions="End" BindingContext="{x:Reference Cantidad}" Text="{Binding Value}"/>-->
-                                    <Stepper Maximum="20" Minimum="1" Increment="1" x:Name="Cant" Value="{Binding Cantidad}" HorizontalOptions="StartAndExpand"/>
+                                    <Stepper Maximum="20" Minimum="1" Increment="1" x:Name="Cant" ValueChanged="Cant_ValueChanged" Value="{Binding Cantidad}" HorizontalOptions="StartAndExpand" />
                                     <Label HorizontalOptions="End" BindingContext="{x:Reference Cant}" Text="{Binding Value}"/>
                                 </StackLayout>
                                 
                                 <Label Grid.Column="4" Grid.Row="0"
                                        Text="{Binding Subtotal}"
-                                       HorizontalTextAlignment="Center"
+                                       HorizontalTextAlignment="Center" x:Name="subt"
                                        HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
                                 
                                 <!--<Button Text="[x]"
@@ -103,6 +108,13 @@
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
+
+            <Label Text="{Binding BindingContext.TotalCarrito, Source={x:Reference vistacarrito}}" />
+
+            <Button Text="Comprar"
+                CommandParameter="{Binding .}" 
+                Command="{Binding BindingContext.ComprarCarrito, Source={x:Reference vistacarrito}}" />
+
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

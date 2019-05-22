@@ -24,8 +24,6 @@ namespace PX.ViewModels
             Task.Run(async () => {
                 await this.CargarProductos();                
             });
-                                 
-
 
 
             //-----PRUEBA-----/
@@ -128,7 +126,8 @@ namespace PX.ViewModels
         //-----PRUEBA-----/
         private void CargarArticulos()
         {
-            List<Producto> lista = App.Locator.SessionService.Articulos;
+            SessionService session = App.Locator.SessionService;
+            List<Producto> lista = session.Articulos;
             this.Articulos = new ObservableCollection<Producto>(lista);
         }
 
@@ -172,29 +171,29 @@ namespace PX.ViewModels
 
                     //-----NOTA: PRUEBA AÑADIR PRODUCTOS AL CARRITO-----/
                     //NOTA: FUNCIONA!!!
-                    SessionService session = App.Locator.SessionService;
-                    Producto prod = producto as Producto;
-                    if (session.Articulos.SingleOrDefault(p => p.IdProducto == prod.IdProducto) == null)
-                    {
-                        prod.Cantidad = 1;
-                        session.Articulos.Add(prod);
-                    }
-                    else
-                    {
-                        prod.Cantidad++;
-                    }
-
-                    //NOTA: NO FUNCIONA!!!
+                    //SessionService session = App.Locator.SessionService;
                     //Producto prod = producto as Producto;
-                    //if (this.Articulos.SingleOrDefault(p => p.IdProducto == prod.IdProducto) == null)
+                    //if (session.Articulos.SingleOrDefault(p => p.IdProducto == prod.IdProducto) == null)
                     //{
                     //    prod.Cantidad = 1;
-                    //    this.Articulos.Add(prod);
+                    //    session.Articulos.Add(prod);
                     //}
                     //else
                     //{
                     //    prod.Cantidad++;
                     //}
+
+                    //NOTA: YA NO FUNCIONA: para ello en IoCConfiguration tiene que estar builder.RegisterType<ProductosViewModel>().SingleInstance();!!!
+                    Producto prod = producto as Producto;
+                    if (this.Articulos.SingleOrDefault(p => p.IdProducto == prod.IdProducto) == null)
+                    {
+                        prod.Cantidad = 1;
+                        this.Articulos.Add(prod);
+                    }
+                    else
+                    {
+                        prod.Cantidad++;
+                    }
                     //-----FIN PRUEBA-----/
 
                     //view.BindingContext = viewmodel;
@@ -214,21 +213,29 @@ namespace PX.ViewModels
             }
         }
 
-        //public Command EliminarProducto
-        //{
-        //    get
-        //    {
-        //        return new Command(async (producto) =>
-        //        {
-        //            SessionService session = App.Locator.SessionService;
-        //            Producto prod = producto as Producto;
-        //            if (session.Articulos.SingleOrDefault(p => p.IdProducto == prod.IdProducto) == null)
-        //            {
-        //                session.Articulos.Remove(prod);
-        //            }
-        //        });
-        //    }
-        //}
+        public Command EliminarProducto
+        {
+            get
+            {
+                return new Command(async (producto) =>
+                {
+                    Producto prod = producto as Producto;
+                    this.Articulos.Remove(prod);                    
+                });
+            }
+        }
+
+        private int _TotalCarrito;
+        public int TotalCarrito
+        {
+            get { return this._TotalCarrito; }
+            set
+            {
+                this._TotalCarrito = value;
+                OnPropertyChange("TotalCarrito");
+            }
+
+        }
         //-----FIN PRUEBA-----/
     }
 }
