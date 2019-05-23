@@ -49,8 +49,8 @@
                                             <Label Text="{Binding Nombre}" TextColor="Black" FontSize="22" HorizontalTextAlignment="Center"
                                                    HorizontalOptions="FillAndExpand"/>
                                             <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" >
-                                                    <Label Text="Precio: " TextColor="Black" FontSize="18" Margin="0,18,0,-18"/>
-                                                    <Label Text="{Binding PrecioUnidad, StringFormat='\{0\} €'}" 
+                                                <Label Text="Precio: " TextColor="Black" FontSize="18" Margin="0,18,0,-18"/>
+                                                <Label Text="{Binding PrecioUnidad, StringFormat='\{0\} €'}" 
                                                        TextColor="Orange" FontSize="35" HorizontalTextAlignment="Start" FontAttributes="Bold"/>
                                             </StackLayout>
                                         </StackLayout>

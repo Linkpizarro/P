@@ -6,12 +6,50 @@
              xmlns:local="clr-namespace:PX"
              BindingContext="{Binding Source={x:Static local:App.Locator}, Path=ProductoViewModel}"
              x:Class="PX.Views.DetallesProductoView">
-    <!-- NOTA: PRUEBA -->
-    <!--<ContentPage.BindingContext>
-        <viewmodels:ProductoViewModel />
-    </ContentPage.BindingContext>-->
     <ContentPage.Content>
-        <Grid Margin="0,30,0,0">
+        <StackLayout>
+            <Grid HorizontalOptions="CenterAndExpand" VerticalOptions="FillAndExpand" Padding="10,5,10,5">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="200"/>
+                    <RowDefinition Height="50"/>
+                    <RowDefinition Height="200"/>
+                    <RowDefinition Height="50"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="200"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <!--<Image Source="{Binding UrlImagen}" Grid.Column="0" Grid.Row="0"
+                                               Grid.RowSpan="2"
+                                           WidthRequest="150"
+                                           HeightRequest="200"/>-->
+                <BoxView Grid.Column="0" Grid.Row="0" BackgroundColor="Orange" HorizontalOptions="FillAndExpand"
+                                                 VerticalOptions="FillAndExpand"/>
+                <StackLayout Grid.Column="1" Grid.Row="0"  Padding="10,40,10,0">
+                    <Label Text="{Binding Producto.Nombre}" TextColor="Black" FontSize="30" HorizontalTextAlignment="Center"
+                                                   HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"/>
+                </StackLayout>
+                <StackLayout HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" Grid.ColumnSpan="2" Grid.Row="2" >
+                    <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                        <Label Text="Descripción" TextColor="#4528A2" FontSize="22" HorizontalTextAlignment="Start"/>
+                    </StackLayout>
+                    <StackLayout>
+                        <ScrollView MinimumHeightRequest="80">
+                            <StackLayout  HorizontalOptions="FillAndExpand">
+                                <Label Text="{Binding Producto.Descripcion}" TextColor="Black" FontSize="18" HorizontalTextAlignment="Center"/>
+                            </StackLayout>
+                        </ScrollView>
+                    </StackLayout>
+                    <StackLayout Orientation="Horizontal">
+                        <Label Text="Precio: " TextColor="Black" FontSize="18" Margin="0,18,0,-18"/>
+                        <Label Text="{Binding Producto.PrecioUnidad, StringFormat='\{0\} €'}" 
+                           TextColor="Orange" FontSize="35" HorizontalTextAlignment="Start" FontAttributes="Bold"/>
+                    </StackLayout>
+                </StackLayout>
+               
+            </Grid>
+        </StackLayout>
+        <!--<Grid Margin="0,30,0,0">
             <Grid.RowDefinitions>
                 <RowDefinition Height="50" />
                 <RowDefinition Height="*" />
@@ -29,13 +67,13 @@
                 
                 <Stepper Maximum="20" Minimum="1" Increment="1" x:Name="Cantidad" Value="{Binding CantidadProducto}" HorizontalOptions="StartAndExpand"/>
                 <Label HorizontalOptions="End" BindingContext="{x:Reference Cantidad}" Text="{Binding Value}"/>
-                <!--<Button Text="Añadir" 
+                --><!--<Button Text="Añadir" 
                         Command="{Binding BindingContext.GuadarProducto, Source={x:Reference vistadetallesproducto}}"
-                         HorizontalOptions="FillAndExpand" />-->
+                         HorizontalOptions="FillAndExpand" />--><!--
                 <Button Text="Añadir" 
                         Command="{Binding GuadarProducto}"
                          HorizontalOptions="FillAndExpand" />
             </StackLayout>
-        </Grid>        
+        </Grid>-->        
     </ContentPage.Content>
 </ContentPage>
