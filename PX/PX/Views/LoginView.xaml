@@ -8,19 +8,19 @@
     </ContentPage.BindingContext>
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="VISTA LOGIN "
-                   FontSize="Large"
-                HorizontalOptions="CenterAndExpand" />
-            <StackLayout VerticalOptions="CenterAndExpand" BackgroundColor="LightGray"
-                         HorizontalOptions="Center" WidthRequest="320" HeightRequest="300">
-                <Label Text="Usuario" HorizontalOptions="CenterAndExpand"/> 
-                <Entry Text="{Binding Usuario.Username}" HorizontalOptions="Center" WidthRequest="300"/>
-                <Label Text="Password" HorizontalOptions="CenterAndExpand"/>
-                <Entry Text="{Binding Usuario.Password}" HorizontalOptions="Center" WidthRequest="300" />
-                <Label Text="{Binding Mensaje}" TextColor="Red" />
-                <Button Text="Iniciar sesion" Command="{Binding IniciarSesion}" HorizontalOptions="Center" WidthRequest="300"></Button>
-                <Button Text="Registrarse" Command="{Binding Registrarte}" HorizontalOptions="Center" WidthRequest="300" />
-            </StackLayout>
+            <Image Source="logo.png" HeightRequest="120"/>
+            <Frame OutlineColor="#4528A2" VerticalOptions="CenterAndExpand"
+                         HorizontalOptions="Center" WidthRequest="320" HeightRequest="300" Margin="0,0,0,80">
+                <StackLayout>
+                    <Label Text="Usuario" HorizontalOptions="CenterAndExpand"/>
+                    <Entry Text="{Binding Usuario.Username}" HorizontalOptions="Center" WidthRequest="300"/>
+                    <Label Text="Password" HorizontalOptions="CenterAndExpand"/>
+                    <Entry Text="{Binding Usuario.Password}" HorizontalOptions="Center" WidthRequest="300" />
+                    <Label Text="{Binding Mensaje}" TextColor="Red" />
+                    <Button Text="Iniciar sesion" Command="{Binding IniciarSesion}" HorizontalOptions="Center" WidthRequest="300" BackgroundColor="Orange"></Button>
+                    <Button Text="Registrarse" Command="{Binding Registrarte}" HorizontalOptions="Center" WidthRequest="300" BackgroundColor="Orange" />
+                </StackLayout>
+            </Frame>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

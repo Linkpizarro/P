@@ -9,25 +9,30 @@
     <ContentPage.Content>
         <StackLayout>
             <Label Text="VISTA REGISTRO"
+                   FontSize="Large"
+                   TextColor="Black"
                 HorizontalOptions="CenterAndExpand" />
-            <StackLayout>
-                <Label Text="Usuario" HorizontalOptions="CenterAndExpand"/>
-                <Entry Text="{Binding Usuario.Username}"/>
-                <Label Text="Password" HorizontalOptions="CenterAndExpand"/>
-                <Entry Text="{Binding Usuario.Password}" />
-                <Label Text="Nombre" HorizontalOptions="CenterAndExpand"/>
-                <Entry Text="{Binding Usuario.Nombre}"/>
-                <Label Text="Email" HorizontalOptions="CenterAndExpand"/>
-                <Entry Text="{Binding Usuario.Email}" />
-                <Label Text="Apellidos" HorizontalOptions="CenterAndExpand"/>
-                <Entry Text="{Binding Usuario.Apellidos}" />
-                <Label Text="Pais" HorizontalOptions="CenterAndExpand"/>
-                <Entry Text="{Binding Usuario.Pais}"/>
-                <Label Text="Ciudad" HorizontalOptions="CenterAndExpand"/>
-                <Entry Text="{Binding Usuario.Ciudad}" />
-                <Button Text="Registrarte" Command="{Binding RegistrarUsuario}"/>
-                <Label Text="{Binding Mensaje}"/>
-            </StackLayout>
+            <Frame OutlineColor="#4528A2" VerticalOptions="CenterAndExpand"
+                   WidthRequest="320">
+                <StackLayout>
+                    <Label Text="Usuario" HorizontalOptions="CenterAndExpand"/>
+                    <Entry Text="{Binding Usuario.Username}"/>
+                    <Label Text="Password" HorizontalOptions="CenterAndExpand"/>
+                    <Entry Text="{Binding Usuario.Password}" />
+                    <Label Text="Nombre" HorizontalOptions="CenterAndExpand"/>
+                    <Entry Text="{Binding Usuario.Nombre}"/>
+                    <Label Text="Email" HorizontalOptions="CenterAndExpand"/>
+                    <Entry Text="{Binding Usuario.Email}" />
+                    <Label Text="Apellidos" HorizontalOptions="CenterAndExpand"/>
+                    <Entry Text="{Binding Usuario.Apellidos}" />
+                    <Label Text="Pais" HorizontalOptions="CenterAndExpand"/>
+                    <Entry Text="{Binding Usuario.Pais}"/>
+                    <Label Text="Ciudad" HorizontalOptions="CenterAndExpand"/>
+                    <Entry Text="{Binding Usuario.Ciudad}" />
+                    <Button Text="Registrarte" Command="{Binding RegistrarUsuario}" BackgroundColor="Orange"/>
+                    <Label Text="{Binding Mensaje}"/>
+                </StackLayout>
+            </Frame>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

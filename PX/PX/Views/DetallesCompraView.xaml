@@ -10,7 +10,7 @@
         <StackLayout>
             <Label Text="Detalles Compra usuario!!"
                 HorizontalOptions="CenterAndExpand" />
-            <ListView ItemsSource="{Binding DetallesVenta}">
+            <ListView ItemsSource="{Binding DetallesCompra.Carrito}">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
@@ -19,11 +19,15 @@
                                        HorizontalOptions="StartAndExpand"/>
                                 <Label Text="{Binding Cantidad}"
                                        HorizontalOptions="StartAndExpand"/>
+                                <Label Text="{Binding Producto.PrecioUnidad}"
+                                       HorizontalOptions="StartAndExpand"/>
                             </StackLayout>
                         </ViewCell>
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
+            <Label Text="{Binding DetallesCompra.TotalCompra}"
+                                       HorizontalOptions="StartAndExpand"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

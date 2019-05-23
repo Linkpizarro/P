@@ -30,10 +30,11 @@ namespace PX.ViewModels
 
         private async Task CargarVentas()
         {
-            //SessionService session = App.Locator.SessionService;
-            //string token = session.Cadena;
+            SessionService session = App.Locator.SessionService;
+            string token = session.Cadena;
             List<Venta> lista = await this.repo.GetVentasUsuario();
             this.Ventas = new ObservableCollection<Venta>(lista);
+            //this.Ventas[0].Fecha.DayOfWeek.ToString();
             if (this.Ventas == null || this.Ventas.Count==0)
             {
                 this.Mensaje = "No has realizado ninguna compra...";
@@ -71,14 +72,19 @@ namespace PX.ViewModels
                     String token = App.Locator.SessionService.Cadena;
 
                     ObservableCollection<DetallesVenta> detallesventa = await this.repo.GetDetallesVentaUsuario(v.IdVenta, token);
-                    ObservableCollection<Carrito> prodscompra = new ObservableCollection<Carrito>();
+                    DetallesCompra prodscompra = new DetallesCompra();
+                    int totalcompra = 0;
+                    ObservableCollection<Carrito> comprados = new ObservableCollection<Carrito>();
                     foreach(DetallesVenta dv in detallesventa)
                     {
                         Producto p = await this.repoProductos.BuscarProducto(dv.IdProducto);
                         Carrito pcomprado = new Carrito(p, dv.Cantidad);
-                        prodscompra.Add(pcomprado);
+                        comprados.Add(pcomprado);
+                        totalcompra += p.PrecioUnidad * dv.Cantidad;
                     }
-                    viewmodel.DetallesVenta = prodscompra;
+                    prodscompra.Carrito = comprados;
+                    prodscompra.TotalCompra = totalcompra;
+                    viewmodel.DetallesCompra = prodscompra;
                     view.BindingContext = viewmodel;
                     await Application.Current.MainPage.Navigation.PushModalAsync(view);
                 });

@@ -14,14 +14,14 @@ namespace PX.ViewModels
 
         }
 
-        private ObservableCollection<Carrito> _DetallesVenta;
-        public ObservableCollection<Carrito> DetallesVenta
+        private DetallesCompra _DetallesCompra;
+        public DetallesCompra DetallesCompra
         {
-            get { return this._DetallesVenta; }
+            get { return this._DetallesCompra; }
             set
             {
-                this._DetallesVenta = value;
-                OnPropertyChange("DetallesVenta");
+                this._DetallesCompra = value;
+                OnPropertyChange("DetallesCompra");
             }
         }
     }

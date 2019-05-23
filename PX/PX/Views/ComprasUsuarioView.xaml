@@ -19,7 +19,7 @@
                     <DataTemplate>
                         <ViewCell>
                             <StackLayout Orientation="Horizontal">
-                                <Label Text="{Binding Fecha}"
+                                <Label Text="{Binding Fecha,StringFormat='Compra realizada: {0}'}"
                                        HorizontalOptions="StartAndExpand"/>
                                 <Button Text="Detalles compra"
                                         CommandParameter="{Binding .}" 
