@@ -82,7 +82,7 @@
                                        HorizontalTextAlignment="Center"
                                        HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
                                 <Label Grid.Column="2" Grid.Row="0"
-                                       x:Name="lblpreciounidad" 
+                                       x:Name="lblpreciounidad"
                                        Text="{Binding PrecioUnidad}"
                                        HorizontalTextAlignment="Center"
                                        HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" />
@@ -98,6 +98,10 @@
                                     <Label HorizontalOptions="End" BindingContext="{x:Reference Cant}" Text="{Binding Value}"/>-->
                                     <Stepper Maximum="20" Minimum="1" Increment="1" x:Name="Cant" Value="{Binding Cantidad}" HorizontalOptions="StartAndExpand" />
                                     <Label x:Name="lblcant" HorizontalOptions="End" BindingContext="{x:Reference Cant}" Text="{Binding Value}"/>
+                                    
+                                    <!-- NOTA: BORRAR!!! -->
+                                    <!--<Stepper Maximum="20" Minimum="1" Increment="1" x:Name="ObjProducto" Value="{Binding .}" HorizontalOptions="StartAndExpand" />
+                                    <Label x:Name="lblc" HorizontalOptions="End" BindingContext="{x:Reference ObjProducto}" Text="{Binding Value}"/>-->
                                 </StackLayout>
 
                                 <!-- NOTA: NO FUNCIONA!!! -->
@@ -111,14 +115,15 @@
                                        HorizontalTextAlignment="Center" x:Name="Subt"
                                        HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>-->
                                 <!-- NOTA: FUNCIONA PERO A MEDIAS -->
-                                <!--<Label Grid.Column="4" Grid.Row="0"
+                                <Label Grid.Column="4" Grid.Row="0"
                                        x:Name="lblsubt" BindingContext="{x:Reference Name=lblcant}" Text="{Binding Path=Text, Mode=OneWay, Converter={StaticResource convertidorsubtotal}}"
                                        HorizontalTextAlignment="Center" 
-                                       HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>-->
-                                <Label Grid.Column="4" Grid.Row="0"
-                                       x:Name="lblsubt" Text="{Binding Path=., Converter={StaticResource convertidorsubtotal}, ConverterParameter={x:Reference lblcant}}"
-                                       HorizontalTextAlignment="Center" 
                                        HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
+                                <!-- NOTA: FUNCIONA A MEDIAS: se pasa los parametros en sentido contratrio: "value" como "PrecioUnidad", "parameter" como "lblcant" -->
+                                <!--<Label Grid.Column="4" Grid.Row="0"
+                                       x:Name="lblsubt" Text="{Binding Path=PrecioUnidad, Converter={StaticResource convertidorsubtotal}, ConverterParameter={x:Reference lblcant}}"
+                                       HorizontalTextAlignment="Center" 
+                                       HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>-->
                                                         
                                 <Button Text="[x]" TextColor="Red" WidthRequest="50"
                                         CommandParameter="{Binding .}" 

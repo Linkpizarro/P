@@ -188,9 +188,9 @@ namespace PX.ViewModels
                     if (this.Articulos.SingleOrDefault(p => p.IdProducto == prod.IdProducto) == null)
                     {
                         prod.Cantidad = 1;
-                        this.CantidadProducto = prod.Cantidad;
+                        //this.CantidadProducto = prod.Cantidad;
                         prod.Subtotal = prod.Cantidad * (decimal)prod.PrecioUnidad; //NOTA: Añadido porque se ha comentado en "Producto.cs" la propiedad extendida "Subtotal".
-                        this.SubtotalProducto = prod.Subtotal;
+                        //this.SubtotalProducto = prod.Subtotal;
                         this.Articulos.Add(prod);
 
                         this.TotalCarrito = Articulos.Sum(p => (int)p.Subtotal);
@@ -198,10 +198,10 @@ namespace PX.ViewModels
                     else
                     {
                         prod.Cantidad++;
-                        this.CantidadProducto = prod.Cantidad;
+                        //this.CantidadProducto = prod.Cantidad;
                         prod.Subtotal = prod.Cantidad * (decimal)prod.PrecioUnidad; //NOTA: Añadido porque se ha comentado en "Producto.cs" la propiedad extendida "Subtotal".
-                        this.SubtotalProducto = prod.Subtotal;
-
+                        //this.SubtotalProducto = prod.Subtotal;
+                        //this.Articulos.Add(producto); //NOTA: sugerencia de Dani
                         this.TotalCarrito = Articulos.Sum(p => (int)p.Subtotal);
                     }
                     //-----FIN PRUEBA-----/
