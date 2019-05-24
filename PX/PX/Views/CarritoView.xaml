@@ -96,12 +96,23 @@
                                     <!-- NOTA: FUNCIONA!!! -->
                                     <!--<Stepper Maximum="20" Minimum="1" Increment="1" x:Name="Cant" Value="{Binding Cantidad}" HorizontalOptions="StartAndExpand" />
                                     <Label HorizontalOptions="End" BindingContext="{x:Reference Cant}" Text="{Binding Value}"/>-->
-                                    <Stepper Maximum="20" Minimum="1" Increment="1" x:Name="Cant" Value="{Binding Cantidad}" HorizontalOptions="StartAndExpand" />
-                                    <Label x:Name="lblcant" HorizontalOptions="End" BindingContext="{x:Reference Cant}" Text="{Binding Value}"/>
-                                    
-                                    <!-- NOTA: BORRAR!!! -->
-                                    <!--<Stepper Maximum="20" Minimum="1" Increment="1" x:Name="ObjProducto" Value="{Binding .}" HorizontalOptions="StartAndExpand" />
-                                    <Label x:Name="lblc" HorizontalOptions="End" BindingContext="{x:Reference ObjProducto}" Text="{Binding Value}"/>-->
+                                    <!--<Stepper Maximum="20" Minimum="1" Increment="1" x:Name="Cant" Value="{Binding Cantidad}" HorizontalOptions="StartAndExpand" />
+                                    <Label x:Name="lblcant" HorizontalOptions="End" BindingContext="{x:Reference Cant}" Text="{Binding Value}"/>-->
+
+                                    <Button Text="[-]" TextColor="Red" WidthRequest="40"
+                                        CommandParameter="{Binding .}" 
+                                        Command="{Binding BindingContext.RestarProducto, Source={x:Reference vistacarrito}}" />
+                                    <Button Text="[+]" TextColor="Red" WidthRequest="40"
+                                        CommandParameter="{Binding .}" 
+                                        Command="{Binding BindingContext.SumarProducto, Source={x:Reference vistacarrito}}" />                                    
+                                    <!--<Label Grid.Column="1" Grid.Row="0"
+                                       Text="{Binding BindingContext.CantidadProducto, Source={x:Reference vistacarrito}}"
+                                       HorizontalTextAlignment="Center"
+                                       HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>-->
+                                    <Label Grid.Column="1" Grid.Row="0"
+                                       Text="{Binding Cantidad}"
+                                       HorizontalTextAlignment="Center"
+                                       HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
                                 </StackLayout>
 
                                 <!-- NOTA: NO FUNCIONA!!! -->
@@ -110,21 +121,23 @@
                                        HorizontalTextAlignment="Center" x:Name="Subt"
                                        HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>-->
                                 <!-- NOTA: FUNCIONA!!! -->
-                                <!--<Label Grid.Column="4" Grid.Row="0"
+                                <Label Grid.Column="4" Grid.Row="0"
                                        Text="{Binding Subtotal}"
                                        HorizontalTextAlignment="Center" x:Name="Subt"
-                                       HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>-->
+                                       HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
+                                
                                 <!-- NOTA: FUNCIONA PERO A MEDIAS -->
-                                <Label Grid.Column="4" Grid.Row="0"
+                                <!--<Label Grid.Column="4" Grid.Row="0"
                                        x:Name="lblsubt" BindingContext="{x:Reference Name=lblcant}" Text="{Binding Path=Text, Mode=OneWay, Converter={StaticResource convertidorsubtotal}}"
                                        HorizontalTextAlignment="Center" 
-                                       HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
+                                       HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>-->
+                                
                                 <!-- NOTA: FUNCIONA A MEDIAS: se pasa los parametros en sentido contratrio: "value" como "PrecioUnidad", "parameter" como "lblcant" -->
                                 <!--<Label Grid.Column="4" Grid.Row="0"
                                        x:Name="lblsubt" Text="{Binding Path=PrecioUnidad, Converter={StaticResource convertidorsubtotal}, ConverterParameter={x:Reference lblcant}}"
                                        HorizontalTextAlignment="Center" 
                                        HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>-->
-                                                        
+
                                 <Button Text="[x]" TextColor="Red" WidthRequest="50"
                                         CommandParameter="{Binding .}" 
                                         Command="{Binding BindingContext.EliminarProducto, Source={x:Reference vistacarrito}}" />
