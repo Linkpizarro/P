@@ -4,6 +4,7 @@ using PX.Tools;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -30,10 +31,21 @@ namespace PX.Repositories
             return detallesVentas;
         }
         ///api/InsertarVenta
-        public async Task InsertarVenta(Venta v, String token)
+        public async Task InsertarVenta(String token)
         {
-            String peticion = "/api/InsertarVenta";
-            await Api.PostApi(v, peticion, token);
+            using (HttpClient client = new HttpClient())
+            {
+                String peticion = "api/InsertarVenta";
+                client.BaseAddress = new Uri(Api.uriapi);
+                client.DefaultRequestHeaders.Accept.Clear();
+                client.DefaultRequestHeaders.Accept.Add(Api.headerjson);
+                client.DefaultRequestHeaders.Add("Authorization", "bearer " + token);
+                StringContent content =
+                    new StringContent(""
+                    , System.Text.Encoding.UTF8, "application/json");
+                HttpResponseMessage response =
+                    await client.PostAsync(peticion, content);
+            }
         }
     }
 }
