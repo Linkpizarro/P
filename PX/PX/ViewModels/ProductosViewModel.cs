@@ -16,10 +16,13 @@ namespace PX.ViewModels
     public class ProductosViewModel : ViewModelBase
     {
         RepositoryProductos repo;
+        RepositoryVentas repoVentas;
 
         public ProductosViewModel()
         {
             this.repo = new RepositoryProductos();
+            this.repoVentas = new RepositoryVentas();
+
             //NOTA: "Task.Run()" carga en el CONSTRUCTOR un metodo ASINCRONO
             Task.Run(async () => {
                 await this.CargarProductos();                
@@ -230,7 +233,7 @@ namespace PX.ViewModels
 
                     MessagingCenter.Subscribe<ProductosViewModel>(this, "INSERTAR", async (sender) =>
                     {
-                        this.CargarArticulos();
+                        //this.CargarArticulos();
                     });
 
                     //viewmodel.Producto = producto as Producto;
@@ -280,20 +283,53 @@ namespace PX.ViewModels
                         //this.SubtotalProducto = this.Articulos[indice].Subtotal;                   
 
                         this.TotalCarrito = this.Articulos.Sum(p => (int)p.Subtotal);
-                       
+
                     }
 
                     //BORRAR!!!
-                    ////var vUpdatedPage = new PageYouWantToRefresh(); Navigation.InsertPageBefore(vUpdatedPage, this); Navigation.PopAsync();
-                    CarritoView view = new CarritoView();
+                    //var vUpdatedPage = new PageYouWantToRefresh(); Navigation.InsertPageBefore(vUpdatedPage, this); Navigation.PopAsync();
                     //Application.Current.MainPage.Navigation.InsertPageBefore(view, new ProductosView());
                     //await Application.Current.MainPage.Navigation.PopAsync();
 
+                    CarritoView view = new CarritoView();
                     await Application.Current.MainPage.Navigation.PopModalAsync();
                     await Application.Current.MainPage.Navigation.PushModalAsync(view);
-
                     //-----FIN PRUEBA-----/
                 });
+
+                //return new Command(async (producto) =>
+                //{
+                //    //-----NOTA: PRUEBA AÑADIR PRODUCTOS AL CARRITO-----/
+                //    //NOTA: YA NO FUNCIONA: para ello en IoCConfiguration tiene que estar builder.RegisterType<ProductosViewModel>().SingleInstance();!!!
+                //    Producto prod = producto as Producto;
+                //    if (this.Articulos.SingleOrDefault(p => p.IdProducto == prod.IdProducto) == null)
+                //    {
+
+                //    }
+                //    else
+                //    {
+                //        this.Articulos.Add(prod);
+                //        int cantidad = this.Articulos.Count(p => p.IdProducto == prod.IdProducto);
+
+                //        prod.Cantidad++;
+                //        //this.CantidadProducto = prod.Cantidad;
+                //        prod.Subtotal = prod.Cantidad * (decimal)prod.PrecioUnidad; //NOTA: Añadido porque se ha comentado en "Producto.cs" la propiedad extendida "Subtotal".
+                //        //this.SubtotalProducto = prod.Subtotal;                     
+
+                //        this.TotalCarrito = this.Articulos.Sum(p => (int)p.Subtotal);
+                //        //this.TotalCarrito = cantidad
+                //    }
+
+                //    //BORRAR!!!
+                //    //var vUpdatedPage = new PageYouWantToRefresh(); Navigation.InsertPageBefore(vUpdatedPage, this); Navigation.PopAsync();
+                //    //Application.Current.MainPage.Navigation.InsertPageBefore(view, new ProductosView());
+                //    //await Application.Current.MainPage.Navigation.PopAsync();
+
+                //    CarritoView view = new CarritoView();
+                //    await Application.Current.MainPage.Navigation.PopModalAsync();
+                //    await Application.Current.MainPage.Navigation.PushModalAsync(view);
+                //    //-----FIN PRUEBA-----/
+                //});
             }
         }
         public Command RestarProducto
@@ -311,11 +347,19 @@ namespace PX.ViewModels
                     }
                     else
                     {
-                        prod.Cantidad--;
-                        this.CantidadProducto = prod.Cantidad;
+                        if (prod.Cantidad > 1)
+                        {
+                            prod.Cantidad--;
+                        }
+                        
+                        //this.CantidadProducto = prod.Cantidad;
                         prod.Subtotal = prod.Cantidad * (decimal)prod.PrecioUnidad; //NOTA: Añadido porque se ha comentado en "Producto.cs" la propiedad extendida "Subtotal".
-                        this.SubtotalProducto = prod.Subtotal;
+                        //this.SubtotalProducto = prod.Subtotal;
                         this.TotalCarrito = this.Articulos.Sum(p => (int)p.Subtotal);
+
+                        CarritoView view = new CarritoView();
+                        await Application.Current.MainPage.Navigation.PopModalAsync();
+                        await Application.Current.MainPage.Navigation.PushModalAsync(view);
                     }
                     //-----FIN PRUEBA-----/
                 });
@@ -358,6 +402,51 @@ namespace PX.ViewModels
 
         }
 
+        //NOTA: BORRAR!!!
+        //private Producto _Producto;
+        //public Producto Producto
+        //{
+        //    get { return this._Producto; }
+        //    set
+        //    {
+        //        this._Producto = value;
+        //        OnPropertyChange("Producto");
+        //    }
+
+        //}
+
+        public Command ComprarCarrito
+        {
+            get
+            {
+                return new Command(async () =>
+                {
+                    String token = App.Locator.SessionService.Cadena;
+                    if (token == null)
+                    {
+                        await Application.Current.MainPage.Navigation.PopModalAsync();
+                    }
+                    else
+                    {
+                        await this.repoVentas.InsertarVenta(token);
+
+                        List<DetallesVenta> detallesVenta = new List<DetallesVenta>();
+                        foreach (Producto p in this.Articulos)
+                        {
+                            DetallesVenta detalles = new DetallesVenta();
+                            detalles.IdProducto = p.IdProducto;
+                            detalles.Cantidad = p.Cantidad;
+                            detallesVenta.Add(detalles);
+                        }
+                        await this.repoVentas.InsertarDetallesVenta(detallesVenta, token);
+
+                        this.Articulos = null;
+                        this.TotalCarrito = 0;
+                        await Application.Current.MainPage.Navigation.PopModalAsync();
+                    }                    
+                });
+            }
+        }
         //-----FIN PRUEBA-----/
     }
 }

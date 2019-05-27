@@ -19,7 +19,7 @@ namespace PX.ViewModels
                 this.Producto = new Producto();
 
                 //-----PRUEBA-----/
-                this.CantidadProducto = 1;
+                //this.CantidadProducto = 1;
                 //-----FIN PRUEBA-----/
             }
         }
@@ -51,6 +51,7 @@ namespace PX.ViewModels
         {
             get
             {
+                //return new Command(async (producto) => {
                 return new Command(async () => {
                     CarritoView view = new CarritoView();
 
@@ -59,6 +60,8 @@ namespace PX.ViewModels
                     //List<Carrito> articulos = session.Articulos;
                     List<Producto> articulos = session.Articulos;
                     //Carrito articulo = new Carrito(this.Producto, this.CantidadProducto);
+
+                    //this.Producto = producto as Producto;
                     articulos.Add(this.Producto);
 
                     //MessagingCenter.Send<CarritoViewModel>(App.Locator.CarritoViewModel, "INSERTAR");

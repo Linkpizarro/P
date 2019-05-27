@@ -48,7 +48,8 @@
                 </StackLayout>
             </Grid>
             <StackLayout>
-                <Button Text="Añadir al Carrito" 
+                <Button Text="Añadir al Carrito"
+                        CommandParameter="{Binding .}"
                         Command="{Binding BindingContext.GuadarProducto, Source={x:Reference vistadetallesproducto}}"
                          HorizontalOptions="FillAndExpand" BackgroundColor="Orange" TextColor="White" />
             </StackLayout>
