@@ -47,5 +47,10 @@ namespace PX.Repositories
                     await client.PostAsync(peticion, content);
             }
         }
+        public async Task InsertarDetallesVenta(List<DetallesVenta> detallesVentas, String token)
+        {
+            String peticion = "api/InsertarDetallesVenta";
+            await Api.PostApi(detallesVentas, peticion, token);
+        }
     }
 }
