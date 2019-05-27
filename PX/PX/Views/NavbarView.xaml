@@ -18,8 +18,14 @@
                                  HeightRequest="120">
                         <Image Source="logo.png" HeightRequest="120"/>
                     </StackLayout>
+                    <StackLayout Orientation="Horizontal" Margin="5,5,0,5">
+                        <Label Text="Bienvenido" TextColor="White" 
+                               FontSize="14"/>
+                        <Label Text="{Binding UserName}" TextColor="Orange" 
+                               FontSize="14"/>
+                    </StackLayout>
                     <StackLayout>
-                        <SearchBar TextColor="White"/>
+                        <SearchBar TextColor="White" Placeholder="Ej:Nintendo Switch..." PlaceholderColor="LightGray"/>
                     </StackLayout>
                     <ListView x:Name="Menu" RowHeight="30"
                               ItemsSource="{Binding Items}">

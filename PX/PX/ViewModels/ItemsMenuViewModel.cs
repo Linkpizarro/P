@@ -14,8 +14,10 @@ namespace PX.ViewModels
         public ItemsMenuViewModel()
         {
             this.LoadPages();
+            this.UserName = "";
             MessagingCenter.Subscribe<ItemsMenuViewModel>(this, "login", (sender) => {
                this.LoadPages();
+               this.UserName = App.Locator.SessionService.Usuario.Username;
             });
         }
         private void LoadPages()
@@ -32,7 +34,7 @@ namespace PX.ViewModels
                 this.Items.Add(login);
             }
             else
-            {
+            {   
                 var orders = new ItemMenuPage() { Title = "Tus Pedidos", TypePage = typeof(ComprasUsuarioView) };
                 this.Items.Add(orders);
                 var logout = new ItemMenuPage() { Title = "Logout", TypePage = typeof(String) };
@@ -45,6 +47,12 @@ namespace PX.ViewModels
         {
             get { return this._Items; }
             set { this._Items = value; OnPropertyChange("Items"); }
+        }
+        private String _UserName;
+        public String UserName
+        {
+            get { return this._UserName; }
+            set { this._UserName = value; OnPropertyChange("UserName"); }
         }
     }
 }
