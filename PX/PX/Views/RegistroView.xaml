@@ -8,28 +8,21 @@
     </ContentPage.BindingContext>
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="VISTA REGISTRO"
-                   FontSize="Large"
-                   TextColor="Black"
-                HorizontalOptions="CenterAndExpand" />
+            <Image Source="logo.png" HeightRequest="120"/>
             <Frame OutlineColor="#4528A2" VerticalOptions="CenterAndExpand"
-                   WidthRequest="320">
+                         HorizontalOptions="Center" WidthRequest="320" HeightRequest="500" Margin="0,0,0,80">
                 <StackLayout>
-                    <Label Text="Usuario" HorizontalOptions="CenterAndExpand"/>
+                    <Label Text="Usuario*" HorizontalOptions="CenterAndExpand" TextColor="Black"/>
                     <Entry Text="{Binding Usuario.Username}"/>
-                    <Label Text="Password" HorizontalOptions="CenterAndExpand"/>
-                    <Entry Text="{Binding Usuario.Password}" />
-                    <Label Text="Nombre" HorizontalOptions="CenterAndExpand"/>
+                    <Label Text="Password*" HorizontalOptions="CenterAndExpand" TextColor="Black"/>
+                    <Entry Text="{Binding Usuario.Password}" IsPassword="True" />
+                    <Label Text="Nombre*" HorizontalOptions="CenterAndExpand" TextColor="Black"/>
                     <Entry Text="{Binding Usuario.Nombre}"/>
-                    <Label Text="Email" HorizontalOptions="CenterAndExpand"/>
-                    <Entry Text="{Binding Usuario.Email}" />
-                    <Label Text="Apellidos" HorizontalOptions="CenterAndExpand"/>
+                    <Label Text="Apellidos" HorizontalOptions="CenterAndExpand" TextColor="Black"/>
                     <Entry Text="{Binding Usuario.Apellidos}" />
-                    <Label Text="Pais" HorizontalOptions="CenterAndExpand"/>
-                    <Entry Text="{Binding Usuario.Pais}"/>
-                    <Label Text="Ciudad" HorizontalOptions="CenterAndExpand"/>
-                    <Entry Text="{Binding Usuario.Ciudad}" />
-                    <Button Text="Registrarte" Command="{Binding RegistrarUsuario}" BackgroundColor="Orange"/>
+                    <Label Text="Email" HorizontalOptions="CenterAndExpand" TextColor="Black"/>
+                    <Entry Text="{Binding Usuario.Email}" />
+                    <Button Text="Registrarte" Command="{Binding RegistrarUsuario}" BackgroundColor="Orange" TextColor="White"/>
                     <Label Text="{Binding Mensaje}"/>
                 </StackLayout>
             </Frame>

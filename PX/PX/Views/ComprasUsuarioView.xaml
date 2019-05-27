@@ -11,7 +11,9 @@
     </ContentPage.BindingContext>
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="Compras usuario"
+            <Label Text="Tus Pedidos"
+                   FontSize="Large"
+                   TextColor="Black"
                 HorizontalOptions="CenterAndExpand" />
             <Label Text="{Binding Mensaje}" TextColor="Red"/>
             <ListView ItemsSource="{Binding Ventas}">
@@ -19,9 +21,12 @@
                     <DataTemplate>
                         <ViewCell>
                             <StackLayout Orientation="Horizontal">
-                                <Label Text="{Binding Fecha,StringFormat='Compra realizada: {0}'}"
-                                       HorizontalOptions="StartAndExpand"/>
+                                <Label Text="{Binding Fecha,StringFormat='Compra realizada: {0:MMMM dd, yyyy}'}"
+                                       VerticalOptions="CenterAndExpand"
+                                       HorizontalOptions="StartAndExpand" TextColor="Black"/>
                                 <Button Text="Detalles compra"
+                                        BackgroundColor="Orange"
+                                        TextColor="White"
                                         CommandParameter="{Binding .}" 
                                         Command="{Binding BindingContext.MostrarCompra, Source={x:Reference vistacompras}}" />
                             </StackLayout>

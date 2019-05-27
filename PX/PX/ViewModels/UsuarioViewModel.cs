@@ -53,8 +53,9 @@ namespace PX.ViewModels
                         session.Cadena = token;
                         session.Usuario = this.Usuario;
                         MessagingCenter.Send<ItemsMenuViewModel>(App.Locator.ItemsMenuViewModel, "login");
-                        MainPage view = new MainPage();
-                        await Application.Current.MainPage.Navigation.PushAsync(view);
+                        //MainPage view = new MainPage();
+                        //await Application.Current.MainPage.Navigation.PushAsync(view);
+                        await Application.Current.MainPage.Navigation.PopModalAsync();
                     }
                    /* await this.repo.InsertarDoctor(this.Doctor);
                     MessagingCenter.Send<DoctoresViewModel>(App.Locator.DoctoresViewModel, "INSERTAR");*/

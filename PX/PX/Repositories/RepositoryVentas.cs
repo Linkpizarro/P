@@ -29,5 +29,11 @@ namespace PX.Repositories
                 ("api/ComprasUsuarioDetalles/" + idventa, token);
             return detallesVentas;
         }
+        ///api/InsertarVenta
+        public async Task InsertarVenta(Venta v, String token)
+        {
+            String peticion = "/api/InsertarVenta";
+            await Api.PostApi(v, peticion, token);
+        }
     }
 }

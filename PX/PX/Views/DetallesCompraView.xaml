@@ -8,7 +8,9 @@
     </ContentPage.BindingContext>
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="Detalles Compra usuario!!"
+            <Label Text="Detalles del pedido"
+                   FontSize="Large"
+                   TextColor="Black"
                 HorizontalOptions="CenterAndExpand" />
             <ListView ItemsSource="{Binding DetallesCompra.Carrito}">
                 <ListView.ItemTemplate>
@@ -16,18 +18,20 @@
                         <ViewCell>
                             <StackLayout Orientation="Horizontal">
                                 <Label Text="{Binding Producto.Nombre}"
-                                       HorizontalOptions="StartAndExpand"/>
+                                       VerticalOptions="CenterAndExpand"
+                                       HorizontalOptions="StartAndExpand" TextColor="Black"/>
                                 <Label Text="{Binding Cantidad}"
-                                       HorizontalOptions="StartAndExpand"/>
+                                       VerticalOptions="CenterAndExpand"
+                                       HorizontalOptions="EndAndExpand" TextColor="Black"/>
                                 <Label Text="{Binding Producto.PrecioUnidad}"
-                                       HorizontalOptions="StartAndExpand"/>
+                                       VerticalOptions="CenterAndExpand"
+                                       HorizontalOptions="EndAndExpand" TextColor="Black"/>
                             </StackLayout>
                         </ViewCell>
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
-            <Label Text="{Binding DetallesCompra.TotalCompra}"
-                                       HorizontalOptions="StartAndExpand"/>
+            <Label Text="{Binding DetallesCompra.TotalCompra}" HorizontalOptions="Center"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
