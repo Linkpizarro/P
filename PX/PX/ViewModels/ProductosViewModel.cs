@@ -421,29 +421,33 @@ namespace PX.ViewModels
             {
                 return new Command(async () =>
                 {
-                    String token = App.Locator.SessionService.Cadena;
-                    if (token == null)
+                    if (this.Articulos != null)
                     {
-                        await Application.Current.MainPage.Navigation.PopModalAsync();
-                    }
-                    else
-                    {
-                        await this.repoVentas.InsertarVenta(token);
-
-                        List<DetallesVenta> detallesVenta = new List<DetallesVenta>();
-                        foreach (Producto p in this.Articulos)
+                        String token = App.Locator.SessionService.Cadena;
+                        if (token == null)
                         {
-                            DetallesVenta detalles = new DetallesVenta();
-                            detalles.IdProducto = p.IdProducto;
-                            detalles.Cantidad = p.Cantidad;
-                            detallesVenta.Add(detalles);
+                            await Application.Current.MainPage.Navigation.PopModalAsync();
                         }
-                        await this.repoVentas.InsertarDetallesVenta(detallesVenta, token);
+                        else
+                        {
+                            await this.repoVentas.InsertarVenta(token);
 
-                        this.Articulos = null;
-                        this.TotalCarrito = 0;
-                        await Application.Current.MainPage.Navigation.PopModalAsync();
-                    }                    
+                            List<DetallesVenta> detallesVenta = new List<DetallesVenta>();
+                            foreach (Producto p in this.Articulos)
+                            {
+                                DetallesVenta detalles = new DetallesVenta();
+                                detalles.IdProducto = p.IdProducto;
+                                detalles.Cantidad = p.Cantidad;
+                                detallesVenta.Add(detalles);
+                            }
+                            await this.repoVentas.InsertarDetallesVenta(detallesVenta, token);
+
+                            this.Articulos = null;
+                            this.TotalCarrito = 0;
+                            await Application.Current.MainPage.Navigation.PopModalAsync();
+                        }
+                    }
+                    
                 });
             }
         }

@@ -4,6 +4,7 @@ using PX.Services;
 using PX.Views;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using Xamarin.Forms;
 
@@ -62,7 +63,21 @@ namespace PX.ViewModels
                     //Carrito articulo = new Carrito(this.Producto, this.CantidadProducto);
 
                     //this.Producto = producto as Producto;
-                    articulos.Add(this.Producto);
+                    //articulos.Add(this.Producto);
+
+                    if (articulos.SingleOrDefault(p => p.IdProducto == this.Producto.IdProducto) == null)
+                    {
+                        this.Producto.Cantidad = 1;
+                        this.Producto.Subtotal = this.Producto.Cantidad * (decimal)this.Producto.PrecioUnidad; //NOTA: Añadido porque se ha comentado en "Producto.cs" la propiedad extendida "Subtotal".
+                        articulos.Add(this.Producto);
+                        //this.TotalCarrito = this.Articulos.Sum(p => (int)p.Subtotal);
+                    }
+                    else
+                    {
+                        this.Producto.Cantidad++;
+                        this.Producto.Subtotal = this.Producto.Cantidad * (decimal)this.Producto.PrecioUnidad; //NOTA: Añadido porque se ha comentado en "Producto.cs" la propiedad extendida "Subtotal".
+                        //this.TotalCarrito = this.Articulos.Sum(p => (int)p.Subtotal);
+                    }
 
                     //MessagingCenter.Send<CarritoViewModel>(App.Locator.CarritoViewModel, "INSERTAR");
                     MessagingCenter.Send<ProductosViewModel>(App.Locator.ProductosViewModel, "INSERTAR");
