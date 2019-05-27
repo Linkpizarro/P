@@ -34,46 +34,24 @@
                         <Label Text="Descripción" TextColor="#4528A2" FontSize="22" HorizontalTextAlignment="Start"/>
                     </StackLayout>
                     <StackLayout>
-                        <ScrollView MinimumHeightRequest="80">
+                        <ScrollView MinimumHeightRequest="150">
                             <StackLayout  HorizontalOptions="FillAndExpand">
-                                <Label Text="{Binding Producto.Descripcion}" TextColor="Black" FontSize="18" HorizontalTextAlignment="Center"/>
+                                <Label Text="{Binding Producto.Descripcion}" TextColor="Black" FontSize="20" HorizontalTextAlignment="Center"/>
                             </StackLayout>
                         </ScrollView>
                     </StackLayout>
-                    <StackLayout Orientation="Horizontal">
-                        <Label Text="Precio: " TextColor="Black" FontSize="18" Margin="0,18,0,-18"/>
+                    <StackLayout Orientation="Horizontal" Margin="0,20,0,0">
+                        <Label Text="Precio: " TextColor="Black" FontSize="20" Margin="0,18,0,-18"/>
                         <Label Text="{Binding Producto.PrecioUnidad, StringFormat='\{0\} €'}" 
-                           TextColor="Orange" FontSize="35" HorizontalTextAlignment="Start" FontAttributes="Bold"/>
+                           TextColor="Orange" FontSize="40" HorizontalTextAlignment="Start" FontAttributes="Bold"/>
                     </StackLayout>
                 </StackLayout>
-               
             </Grid>
-        </StackLayout>
-        <!--<Grid Margin="0,30,0,0">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="50" />
-                <RowDefinition Height="*" />
-                <RowDefinition Height="50" />
-                <RowDefinition Height="*" />
-            </Grid.RowDefinitions>
-            <StackLayout Margin="0,30,0,0">
-                <Label Text="Detalles de Producto"
-                FontSize="40" TextColor="Red" 
-                HorizontalOptions="CenterAndExpand" />
-                <Label Text="{Binding Producto.Nombre}" />
-                <Label Text="{Binding Producto.PrecioUnidad}" />
-
-                <Entry Text="{Binding BindingContext.CantidadProducto, Source={x:Reference vistadetallesproducto}}" />
-                
-                <Stepper Maximum="20" Minimum="1" Increment="1" x:Name="Cantidad" Value="{Binding CantidadProducto}" HorizontalOptions="StartAndExpand"/>
-                <Label HorizontalOptions="End" BindingContext="{x:Reference Cantidad}" Text="{Binding Value}"/>
-                --><!--<Button Text="Añadir" 
+            <StackLayout>
+                <Button Text="Añadir al Carrito" 
                         Command="{Binding BindingContext.GuadarProducto, Source={x:Reference vistadetallesproducto}}"
-                         HorizontalOptions="FillAndExpand" />--><!--
-                <Button Text="Añadir" 
-                        Command="{Binding GuadarProducto}"
-                         HorizontalOptions="FillAndExpand" />
+                         HorizontalOptions="FillAndExpand" BackgroundColor="Orange" TextColor="White" />
             </StackLayout>
-        </Grid>-->        
+        </StackLayout>
     </ContentPage.Content>
 </ContentPage>

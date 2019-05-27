@@ -25,7 +25,7 @@ namespace PX.Views
             IsPresented = false;
             this.Menu.ItemSelected += ChangePage;
         }
-        private void ChangePage(object sender, SelectedItemChangedEventArgs e)
+        private async void ChangePage(object sender, SelectedItemChangedEventArgs e)
         {
             ItemMenuPage select = (ItemMenuPage)e.SelectedItem;
             if(select.Title == "Logout")
@@ -37,11 +37,20 @@ namespace PX.Views
             }
             else
             {
-                Detail = new NavigationPage((Page)Activator.CreateInstance(select.TypePage))
+                if(select.Title == "Login")
                 {
-                    BarBackgroundColor = Color.FromHex("#4528A2")
-                };
-                IsPresented = false;
+                    await Navigation.PushModalAsync(new LoginView());
+                    IsPresented = false;
+                }
+                else
+                {
+                    Detail = new NavigationPage((Page)Activator.CreateInstance(select.TypePage))
+                    {
+                        BarBackgroundColor = Color.FromHex("#4528A2")
+                    };
+                    IsPresented = false;
+                }
+
             }
            
         }
