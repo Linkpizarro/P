@@ -27,12 +27,8 @@
                                         <ColumnDefinition Width="150" />
                                         <ColumnDefinition Width="*" />
                                     </Grid.ColumnDefinitions>
-                                    <!--<Image Source="{Binding UrlImagen}" Grid.Column="0" Grid.Row="0"
-                                               Grid.RowSpan="2"
-                                           WidthRequest="150"
-                                           HeightRequest="200"/>-->
-                                    <BoxView Grid.Column="0" Grid.Row="0" Grid.RowSpan="3" WidthRequest="150"
-                                             HeightRequest="200" BackgroundColor="Orange" HorizontalOptions="FillAndExpand"
+                                    <Image Source="{Binding UrlImagen}" Grid.Column="0" Grid.Row="0" Grid.RowSpan="3" WidthRequest="150"
+                                             HeightRequest="200"  HorizontalOptions="FillAndExpand"
                                              VerticalOptions="FillAndExpand"/>
                                     <Label Text="{Binding Nombre}" Grid.Column="1" Grid.Row="0"
                                            TextColor="Black" FontSize="20" HorizontalTextAlignment="Center"

@@ -39,12 +39,9 @@
                                             <ColumnDefinition Width="200"/>
                                             <ColumnDefinition Width="*"/>
                                         </Grid.ColumnDefinitions>
-                                        <!--<Image Source="{Binding UrlImagen}" Grid.Column="0" Grid.Row="0"
-                                               Grid.RowSpan="2"
-                                           WidthRequest="150"
-                                           HeightRequest="200"/>-->
-                                        <BoxView Grid.Column="0" Grid.Row="0" Grid.RowSpan="2" BackgroundColor="Orange" HorizontalOptions="FillAndExpand"
-                                                 VerticalOptions="FillAndExpand"/>
+                                        <Image Source="{Binding UrlImagen}" Grid.Column="0" Grid.Row="0"
+                                               Grid.RowSpan="2" HorizontalOptions="FillAndExpand"
+                                               VerticalOptions="FillAndExpand" Margin="5,0,5,5"/>
                                         <StackLayout Grid.Column="1" Grid.Row="0"  Padding="10,40,10,0">
                                             <Label Text="{Binding Nombre}" TextColor="Black" FontSize="22" HorizontalTextAlignment="Center"
                                                    HorizontalOptions="FillAndExpand"/>
@@ -88,13 +85,9 @@
                                                 <ColumnDefinition Width="100"/>
                                                 <ColumnDefinition Width="*"/>
                                             </Grid.ColumnDefinitions>
-                                            <!--<Image Source="{Binding UrlImagen}" Grid.Column="0" Grid.Row="0"
-                                            Grid.RowSpan="2"
-                                        WidthRequest="150"
-                                        HeightRequest="200"/>-->
-                                            <BoxView Grid.Column="0" Grid.Row="0" Grid.RowSpan="2" WidthRequest="100"
+                                            <Image Source="{Binding UrlImagen}" Grid.Column="0" Grid.Row="0" Grid.RowSpan="2" WidthRequest="100"
                                                      HeightRequest="100" MinimumHeightRequest="100"
-                                                     MinimumWidthRequest="100" BackgroundColor="Orange" 
+                                                     MinimumWidthRequest="100"
                                                      HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"/> 
                                             <Label Text="{Binding Nombre}" Grid.Column="1" Grid.Row="0"
                                                    TextColor="Black" FontSize="18" HorizontalTextAlignment="Center"

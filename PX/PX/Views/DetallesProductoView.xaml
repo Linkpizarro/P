@@ -19,11 +19,7 @@
                     <ColumnDefinition Width="200"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
-                <!--<Image Source="{Binding UrlImagen}" Grid.Column="0" Grid.Row="0"
-                                               Grid.RowSpan="2"
-                                           WidthRequest="150"
-                                           HeightRequest="200"/>-->
-                <BoxView Grid.Column="0" Grid.Row="0" BackgroundColor="Orange" HorizontalOptions="FillAndExpand"
+                <Image Source="{Binding Producto.UrlImagen}" Grid.Column="0" Grid.Row="0"  HorizontalOptions="FillAndExpand"
                                                  VerticalOptions="FillAndExpand"/>
                 <StackLayout Grid.Column="1" Grid.Row="0"  Padding="10,40,10,0">
                     <Label Text="{Binding Producto.Nombre}" TextColor="Black" FontSize="30" HorizontalTextAlignment="Center"
