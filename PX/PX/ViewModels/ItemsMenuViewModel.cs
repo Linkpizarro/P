@@ -17,7 +17,14 @@ namespace PX.ViewModels
             this.UserName = "";
             MessagingCenter.Subscribe<ItemsMenuViewModel>(this, "login", (sender) => {
                this.LoadPages();
-               this.UserName = App.Locator.SessionService.Usuario.Username;
+                if (App.Locator.SessionService.Usuario == null)
+                {
+                    this.UserName = "";
+                }
+                else
+                {
+                    this.UserName = App.Locator.SessionService.Usuario.Username;
+                }
             });
         }
         private void LoadPages()

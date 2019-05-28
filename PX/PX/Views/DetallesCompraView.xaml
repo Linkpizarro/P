@@ -12,26 +12,35 @@
                    FontSize="Large"
                    TextColor="Black"
                 HorizontalOptions="CenterAndExpand" />
-            <ListView ItemsSource="{Binding DetallesCompra.Carrito}">
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <ViewCell>
-                            <StackLayout Orientation="Horizontal">
-                                <Label Text="{Binding Producto.Nombre}"
+            <StackLayout  Orientation="Horizontal">
+                <Label Text="Nombre" HorizontalOptions="Start" TextColor="Black"/>
+                <Label Text="Cantidad" HorizontalOptions="Start" TextColor="Black"/>
+                <Label Text="Precio unidad" HorizontalOptions="Start" TextColor="Black"/>
+            </StackLayout>
+            <StackLayout>
+                <ListView ItemsSource="{Binding DetallesCompra.Carrito}" BackgroundColor="LightBlue"  >
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell IsEnabled="False">
+                                <StackLayout Orientation="Horizontal" Padding="10,0,10,0">
+                                    <Label Text="{Binding Producto.Nombre}"
                                        VerticalOptions="CenterAndExpand"
                                        HorizontalOptions="StartAndExpand" TextColor="Black"/>
-                                <Label Text="{Binding Cantidad}"
+                                    <Label Text="{Binding Cantidad}"
                                        VerticalOptions="CenterAndExpand"
                                        HorizontalOptions="EndAndExpand" TextColor="Black"/>
-                                <Label Text="{Binding Producto.PrecioUnidad}"
+                                    <Label Text="{Binding Producto.PrecioUnidad}"
                                        VerticalOptions="CenterAndExpand"
                                        HorizontalOptions="EndAndExpand" TextColor="Black"/>
-                            </StackLayout>
-                        </ViewCell>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
-            <Label Text="{Binding DetallesCompra.TotalCompra}" HorizontalOptions="Center"/>
+                                </StackLayout>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </StackLayout>
+            <StackLayout>
+                <Label Text="{Binding DetallesCompra.TotalCompra}" HorizontalOptions="Center"/>
+            </StackLayout>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
