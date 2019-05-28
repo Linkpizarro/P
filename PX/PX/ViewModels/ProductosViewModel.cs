@@ -366,6 +366,7 @@ namespace PX.ViewModels
             }
         }
 
+        //-----PRUEBA: NO SE USA ESTAS PROPIEDADES!!!-----/
         private int _CantidadProducto;
         public int CantidadProducto
         {
@@ -389,6 +390,7 @@ namespace PX.ViewModels
             }
 
         }
+        //-----FIN PRUEBA-----/
 
         private int _TotalCarrito;
         public int TotalCarrito
@@ -402,19 +404,7 @@ namespace PX.ViewModels
 
         }
 
-        //NOTA: BORRAR!!!
-        //private Producto _Producto;
-        //public Producto Producto
-        //{
-        //    get { return this._Producto; }
-        //    set
-        //    {
-        //        this._Producto = value;
-        //        OnPropertyChange("Producto");
-        //    }
-
-        //}
-
+        
         public Command ComprarCarrito
         {
             get
@@ -426,7 +416,17 @@ namespace PX.ViewModels
                         String token = App.Locator.SessionService.Cadena;
                         if (token == null)
                         {
-                            await Application.Current.MainPage.Navigation.PopModalAsync();
+                            bool respuesta = await Application.Current.MainPage.DisplayAlert("Pregunta...", "Tiene que iniciar sesión para comprar ¿Quieres iniciar sesión?", "Si", "No");
+                            if (respuesta == true)
+                            {
+                                LoginView view = new LoginView();
+                                await Application.Current.MainPage.Navigation.PushModalAsync(view);
+                            }
+                            //else
+                            //{
+                            //    await Application.Current.MainPage.Navigation.PopModalAsync();
+                            //}
+                            ////await Application.Current.MainPage.Navigation.PopModalAsync();
                         }
                         else
                         {
@@ -444,6 +444,9 @@ namespace PX.ViewModels
 
                             this.Articulos = null;
                             this.TotalCarrito = 0;
+
+                            await Application.Current.MainPage.DisplayAlert("Alerta", "Carrito comprado correctamente", "OK");
+                            
                             await Application.Current.MainPage.Navigation.PopModalAsync();
                         }
                     }
