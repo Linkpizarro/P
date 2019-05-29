@@ -43,10 +43,12 @@
                                                  VerticalOptions="CenterAndExpand">
                                         <Button Text="Detalles"
                                             CommandParameter="{Binding .}" 
-                                            Command="{Binding BindingContext.MostrarDetalles, Source={x:Reference vistaproductos}}" />
+                                            Command="{Binding BindingContext.MostrarDetalles, Source={x:Reference vistaproductos}}"
+                                            BackgroundColor="Orange" TextColor="White" />
                                         <Button Text="Añadir"
                                             CommandParameter="{Binding .}" 
-                                            Command="{Binding BindingContext.AnadirProducto, Source={x:Reference vistaproductos}}" />
+                                            Command="{Binding BindingContext.AnadirProducto, Source={x:Reference vistaproductos}}"
+                                            BackgroundColor="Orange" TextColor="White" />
                                     </StackLayout>
                                 </Grid>
                             </StackLayout>
