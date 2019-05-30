@@ -31,20 +31,20 @@ namespace PX.ViewModels
         {
             this.Items = new ObservableCollection<ItemMenuPage>();
             this.Items.Clear();
-            var home = new ItemMenuPage() { Title = "Home", TypePage = typeof(MainPage) };
+            var home = new ItemMenuPage() { Title = "Home", TypePage = typeof(MainPage),Icon ="casa.png" };
             this.Items.Add(home);
-            var products = new ItemMenuPage() { Title = "Productos", TypePage = typeof(ProductosView) };
+            var products = new ItemMenuPage() { Title = "Productos", TypePage = typeof(ProductosView), Icon = "productos.png" };
             this.Items.Add(products);
             if (App.Locator.SessionService.Cadena == null)
             {
-                var login = new ItemMenuPage() { Title = "Login", TypePage = typeof(LoginView) };
+                var login = new ItemMenuPage() { Title = "Login", TypePage = typeof(LoginView), Icon = "login.png" };
                 this.Items.Add(login);
             }
             else
             {   
-                var orders = new ItemMenuPage() { Title = "Tus Pedidos", TypePage = typeof(ComprasUsuarioView) };
+                var orders = new ItemMenuPage() { Title = "Tus Pedidos", TypePage = typeof(ComprasUsuarioView), Icon = "pedidos.png" };
                 this.Items.Add(orders);
-                var logout = new ItemMenuPage() { Title = "Logout", TypePage = typeof(String) };
+                var logout = new ItemMenuPage() { Title = "Logout", TypePage = typeof(String), Icon = "logout.png" };
                 this.Items.Add(logout);
             }
            

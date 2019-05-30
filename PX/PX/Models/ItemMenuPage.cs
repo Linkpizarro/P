@@ -8,5 +8,6 @@ namespace PX.Models
     {
         public String Title { get; set; }
         public Type TypePage { get; set; }
+        public String Icon { get; set; }
     }
 }
