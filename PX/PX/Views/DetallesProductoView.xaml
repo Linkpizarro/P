@@ -7,7 +7,7 @@
              BindingContext="{Binding Source={x:Static local:App.Locator}, Path=ProductoViewModel}"
              x:Class="PX.Views.DetallesProductoView">
     <ContentPage.Content>
-        <StackLayout>
+        <StackLayout Margin="0,30,0,0">
             <Grid HorizontalOptions="CenterAndExpand" VerticalOptions="FillAndExpand" Padding="10,5,10,5">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="200"/>

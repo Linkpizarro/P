@@ -19,10 +19,6 @@ namespace PX.ViewModels
             if (Producto == null)
             {
                 this.Producto = new Producto();
-
-                //-----PRUEBA-----/
-                //this.CantidadProducto = 1;
-                //-----FIN PRUEBA-----/
             }
         }
 
@@ -53,56 +49,35 @@ namespace PX.ViewModels
         {
             get
             {
-                //return new Command(async (producto) => {
                 return new Command(async () => {
                     CarritoView view = new CarritoView();
 
-                    //await this.repo.InsertarDoctor(this.Doctor);
                     SessionService session = App.Locator.SessionService;
-                    //List<Carrito> articulos = session.Articulos;
                     List<Producto> articulos = session.Articulos;
-                    //Carrito articulo = new Carrito(this.Producto, this.CantidadProducto);
-
-                    //this.Producto = producto as Producto;
-                    //articulos.Add(this.Producto);
-
-
 
                     ProductosViewModel viewmodel = App.Locator.ProductosViewModel;
-                    //viewmodel.Articulos = new ObservableCollection<Producto>(articulos);
-
-
 
                     if (viewmodel.Articulos.SingleOrDefault(p => p.IdProducto == this.Producto.IdProducto) == null)
                     {
                         this.Producto.Cantidad = 1;
                         this.Producto.Subtotal = this.Producto.Cantidad * (decimal)this.Producto.PrecioUnidad; //NOTA: Añadido porque se ha comentado en "Producto.cs" la propiedad extendida "Subtotal".
                         viewmodel.Articulos.Add(this.Producto);
-                        //this.TotalCarrito = this.Articulos.Sum(p => (int)p.Subtotal);
                         viewmodel.TotalCarrito = viewmodel.Articulos.Sum(p => (int)p.Subtotal);
                     }
                     else
                     {
                         this.Producto.Cantidad++;
                         this.Producto.Subtotal = this.Producto.Cantidad * (decimal)this.Producto.PrecioUnidad; //NOTA: Añadido porque se ha comentado en "Producto.cs" la propiedad extendida "Subtotal".
-                        //this.TotalCarrito = this.Articulos.Sum(p => (int)p.Subtotal);
                         viewmodel.TotalCarrito = viewmodel.Articulos.Sum(p => (int)p.Subtotal);
                     }
 
-                    //MessagingCenter.Send<CarritoViewModel>(App.Locator.CarritoViewModel, "INSERTAR");
-                    MessagingCenter.Send<ProductosViewModel>(App.Locator.ProductosViewModel, "INSERTAR");
+                    //NOTA: NO SE USA MessagingCenter!!!
+                    //MessagingCenter.Send<ProductosViewModel>(App.Locator.ProductosViewModel, "INSERTAR");
 
                     //NOTA PERSONAL: PRUEBA de mostrar mensaje después de insertar un objeto!!!
                     await Application.Current.MainPage.DisplayAlert("Alerta", "Articulo añadido al carrito correctamente", "OK");
 
-
-                    //ProductosViewModel viewmodel = App.Locator.ProductosViewModel;
-                    //viewmodel.Articulos = new ObservableCollection<Producto>(articulos);
-
-
-
                     view.BindingContext = viewmodel;
-
 
                     //await Application.Current.MainPage.Navigation.PopModalAsync(); //NOTA: "PopModalAsync()" cierra una VISTA volviendo a la anterior.
                     await Application.Current.MainPage.Navigation.PushModalAsync(view);

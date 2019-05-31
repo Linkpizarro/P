@@ -119,7 +119,7 @@ namespace PX.ViewModels
             }
         }
 
-        //-----PRUEBA-----/
+        //-----CARRITO DE LA COMPRA-----/
         private void CargarArticulos()
         {
             SessionService session = App.Locator.SessionService;
@@ -140,45 +140,12 @@ namespace PX.ViewModels
 
         public Command AnadirProducto
         {
-            //get
-            //{
-            //    return new Command(async (producto) => {
-            //        //DetallesProductoView view = new DetallesProductoView();
-            //        //ProductoViewModel viewmodel = new ProductoViewModel();
-            //        CarritoView view = new CarritoView();
-            //        CarritoViewModel viewmodel = new CarritoViewModel();
-
-            //        //viewmodel.Producto = producto as Producto;
-            //        //view.BindingContext = viewmodel;
-            //        Carrito articulo = new Carrito((Producto)producto, 1);
-            //        viewmodel.Articulos.Add(articulo);
-
-            //        await Application.Current.MainPage.Navigation.PushModalAsync(view);
-            //    });
-            //}
-
             get
             {
                 return new Command(async (producto) => {
-                //return new Command(async () => {
                     CarritoView view = new CarritoView();
-                    //ProductosViewModel viewmodel = new ProductosViewModel();
-                    //ProductosViewModel viewmodel = App.Locator.ProductosViewModel;
 
                     //-----NOTA: PRUEBA AÑADIR PRODUCTOS AL CARRITO-----/
-                    //NOTA: FUNCIONA!!!
-                    //SessionService session = App.Locator.SessionService;
-                    //Producto prod = producto as Producto;
-                    //if (session.Articulos.SingleOrDefault(p => p.IdProducto == prod.IdProducto) == null)
-                    //{
-                    //    prod.Cantidad = 1;
-                    //    session.Articulos.Add(prod);
-                    //}
-                    //else
-                    //{
-                    //    prod.Cantidad++;
-                    //}
-
                     //NOTA: YA NO FUNCIONA: para ello en IoCConfiguration tiene que estar builder.RegisterType<ProductosViewModel>().SingleInstance();!!!
                     Producto prod = producto as Producto;
                     if (this.Articulos.SingleOrDefault(p => p.IdProducto == prod.IdProducto) == null)
@@ -196,51 +163,14 @@ namespace PX.ViewModels
                     }
                     //-----FIN PRUEBA-----/
 
-
-                    ////-----NOTA: PRUEBA 2 AÑADIR PRODUCTOS AL CARRITO-----/
-                    ////NOTA: YA NO FUNCIONA: para ello en IoCConfiguration tiene que estar builder.RegisterType<ProductosViewModel>().SingleInstance();!!!
-                    //Producto prod = producto as Producto;
-                    //if (this.Articulos.SingleOrDefault(p => p.IdProducto == prod.IdProducto) == null)
-                    //{
-                    //    prod.Cantidad = 1;
-                    //    prod.Subtotal = prod.Cantidad * (decimal)prod.PrecioUnidad; //NOTA: Añadido porque se ha comentado en "Producto.cs" la propiedad extendida "Subtotal".
-                    //    this.Articulos.Add(prod);
-                    //    this.TotalCarrito = Articulos.Sum(p => (int)p.Subtotal);
-
-
-                    //    this.CantidadProducto = 1;
-                    //    this.SubtotalProducto = this.CantidadProducto * (decimal)prod.PrecioUnidad;
-                    //    this.Articulos.Add(prod);
-
-                    //    int indice = this.Articulos.IndexOf(prod);
-                    //    this.TotalCarrito = this.Articulos.Count();
-                    //}
-                    //else
-                    //{
-                    //    prod.Cantidad++;
-                    //    prod.Subtotal = prod.Cantidad * (decimal)prod.PrecioUnidad; //NOTA: Añadido porque se ha comentado en "Producto.cs" la propiedad extendida "Subtotal".
-                    //    this.TotalCarrito = Articulos.Sum(p => (int)p.Subtotal);
-
-                    //    this.CantidadProducto++;
-                    //    this.SubtotalProducto = this.CantidadProducto * (decimal)prod.PrecioUnidad;
-                    //    this.Articulos.Add(prod); //NOTA: sugerencia de Dani
-                    //}
-                    ////-----FIN PRUEBA 2-----/
-
-                    //view.BindingContext = viewmodel;
-
                     await Application.Current.MainPage.Navigation.PushModalAsync(view);
 
-                    MessagingCenter.Subscribe<ProductosViewModel>(this, "INSERTAR", async (sender) =>
-                    {
-                        //this.CargarArticulos();
-                    });
+                    //NOTA: NO SE USA MessagingCenter!!!
+                    //MessagingCenter.Subscribe<ProductosViewModel>(this, "INSERTAR", async (sender) =>
+                    //{
+                    //    //this.CargarArticulos();
+                    //});
 
-                    //viewmodel.Producto = producto as Producto;
-                    //viewmodel.Articulos.Add(producto as Producto);
-                    //view.BindingContext = viewmodel;
-
-                    //await Application.Current.MainPage.Navigation.PushModalAsync(view);
                 });
             }
         }
@@ -278,58 +208,15 @@ namespace PX.ViewModels
                         prod.Subtotal = prod.Cantidad * (decimal)prod.PrecioUnidad; //NOTA: Añadido porque se ha comentado en "Producto.cs" la propiedad extendida "Subtotal".
                         //this.SubtotalProducto = prod.Subtotal;
 
-                        //int indice = this.Articulos.IndexOf(prod);
-                        //this.CantidadProducto = this.Articulos[indice].Cantidad;
-                        //this.SubtotalProducto = this.Articulos[indice].Subtotal;                   
-
                         this.TotalCarrito = this.Articulos.Sum(p => (int)p.Subtotal);
 
                     }
-
-                    //BORRAR!!!
-                    //var vUpdatedPage = new PageYouWantToRefresh(); Navigation.InsertPageBefore(vUpdatedPage, this); Navigation.PopAsync();
-                    //Application.Current.MainPage.Navigation.InsertPageBefore(view, new ProductosView());
-                    //await Application.Current.MainPage.Navigation.PopAsync();
-
+                    
                     CarritoView view = new CarritoView();
                     await Application.Current.MainPage.Navigation.PopModalAsync();
                     await Application.Current.MainPage.Navigation.PushModalAsync(view);
                     //-----FIN PRUEBA-----/
                 });
-
-                //return new Command(async (producto) =>
-                //{
-                //    //-----NOTA: PRUEBA AÑADIR PRODUCTOS AL CARRITO-----/
-                //    //NOTA: YA NO FUNCIONA: para ello en IoCConfiguration tiene que estar builder.RegisterType<ProductosViewModel>().SingleInstance();!!!
-                //    Producto prod = producto as Producto;
-                //    if (this.Articulos.SingleOrDefault(p => p.IdProducto == prod.IdProducto) == null)
-                //    {
-
-                //    }
-                //    else
-                //    {
-                //        this.Articulos.Add(prod);
-                //        int cantidad = this.Articulos.Count(p => p.IdProducto == prod.IdProducto);
-
-                //        prod.Cantidad++;
-                //        //this.CantidadProducto = prod.Cantidad;
-                //        prod.Subtotal = prod.Cantidad * (decimal)prod.PrecioUnidad; //NOTA: Añadido porque se ha comentado en "Producto.cs" la propiedad extendida "Subtotal".
-                //        //this.SubtotalProducto = prod.Subtotal;                     
-
-                //        this.TotalCarrito = this.Articulos.Sum(p => (int)p.Subtotal);
-                //        //this.TotalCarrito = cantidad
-                //    }
-
-                //    //BORRAR!!!
-                //    //var vUpdatedPage = new PageYouWantToRefresh(); Navigation.InsertPageBefore(vUpdatedPage, this); Navigation.PopAsync();
-                //    //Application.Current.MainPage.Navigation.InsertPageBefore(view, new ProductosView());
-                //    //await Application.Current.MainPage.Navigation.PopAsync();
-
-                //    CarritoView view = new CarritoView();
-                //    await Application.Current.MainPage.Navigation.PopModalAsync();
-                //    await Application.Current.MainPage.Navigation.PushModalAsync(view);
-                //    //-----FIN PRUEBA-----/
-                //});
             }
         }
         public Command RestarProducto
@@ -454,6 +341,6 @@ namespace PX.ViewModels
                 });
             }
         }
-        //-----FIN PRUEBA-----/
+        //-----FIN CARRITO DE LA COMPRA-----/
     }
 }
