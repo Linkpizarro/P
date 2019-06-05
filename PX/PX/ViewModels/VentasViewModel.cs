@@ -78,6 +78,11 @@ namespace PX.ViewModels
                     foreach(DetallesVenta dv in detallesventa)
                     {
                         Producto p = await this.repoProductos.BuscarProducto(dv.IdProducto);
+                        if (p.Nombre.Length >= 8)
+                        {
+                            string nom = p.Nombre.Substring(0, 8);
+                            p.Nombre = nom+"...";
+                        }
                         Carrito pcomprado = new Carrito(p, dv.Cantidad);
                         comprados.Add(pcomprado);
                         totalcompra += p.PrecioUnidad * dv.Cantidad;

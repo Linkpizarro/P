@@ -78,7 +78,7 @@ namespace PX.ViewModels
                     await Application.Current.MainPage.DisplayAlert("Alerta", "Articulo añadido al carrito correctamente", "OK");
 
                     view.BindingContext = viewmodel;
-
+                    await Application.Current.MainPage.Navigation.PopModalAsync();
                     //await Application.Current.MainPage.Navigation.PopModalAsync(); //NOTA: "PopModalAsync()" cierra una VISTA volviendo a la anterior.
                     await Application.Current.MainPage.Navigation.PushModalAsync(view);
                 });

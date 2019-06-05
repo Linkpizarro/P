@@ -329,7 +329,7 @@ namespace PX.ViewModels
                             }
                             await this.repoVentas.InsertarDetallesVenta(detallesVenta, token);
 
-                            this.Articulos = null;
+                            this.Articulos.Clear();
                             this.TotalCarrito = 0;
 
                             await Application.Current.MainPage.DisplayAlert("Alerta", "Carrito comprado correctamente", "OK");

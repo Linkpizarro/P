@@ -8,29 +8,49 @@
     </ContentPage.BindingContext>
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="Detalles del pedido"
+            <StackLayout>
+                <Image Source="logo.png" HeightRequest="150"/>
+            </StackLayout>
+            <!--<Label Text="Detalles del pedido"
                    FontSize="Large"
                    TextColor="Black"
-                HorizontalOptions="CenterAndExpand" />
-            <StackLayout  Orientation="Horizontal">
-                <Label Text="Nombre" HorizontalOptions="Start" TextColor="Black"/>
-                <Label Text="Cantidad" HorizontalOptions="Start" TextColor="Black"/>
-                <Label Text="Precio unidad" HorizontalOptions="Start" TextColor="Black"/>
+                HorizontalOptions="CenterAndExpand" />-->
+            <StackLayout  Orientation="Horizontal" Padding="10,0,10,0">
+                <Label Text="Imagen" HorizontalOptions="Start" TextColor="Black"/>
+                <Label Text="Nombre" HorizontalOptions="EndAndExpand" TextColor="Black"/>
+                <Label Text="Cantidad" HorizontalOptions="EndAndExpand" TextColor="Black"/>
+                <Label Text="P.Unidad" HorizontalOptions="EndAndExpand" TextColor="Black"/>
             </StackLayout>
             <StackLayout>
-                <ListView ItemsSource="{Binding DetallesCompra.Carrito}" BackgroundColor="LightBlue"  >
+                <ListView ItemsSource="{Binding DetallesCompra.Carrito}" HeightRequest="400" >
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <ViewCell IsEnabled="False">
-                                <StackLayout Orientation="Horizontal" Padding="10,0,10,0">
+                                <StackLayout Orientation="Horizontal" Padding="10,10,10,10" >
+                                    <Image HorizontalOptions="StartAndExpand" Source="{Binding Producto.UrlImagen}" 
+                                            MinimumWidthRequest="45"
+                                           HeightRequest="45"
+                                            WidthRequest="45"
+                                            Margin="10,0,0,0"
+                                           />
                                     <Label Text="{Binding Producto.Nombre}"
-                                       VerticalOptions="CenterAndExpand"
+                                           MinimumWidthRequest="120"
+                                           WidthRequest="120"
+                                            Margin="30,0,0,0"
+                                           HorizontalTextAlignment="Center"
                                        HorizontalOptions="StartAndExpand" TextColor="Black"/>
                                     <Label Text="{Binding Cantidad}"
                                        VerticalOptions="CenterAndExpand"
-                                       HorizontalOptions="EndAndExpand" TextColor="Black"/>
+                                           HorizontalTextAlignment="Center"
+                                           MinimumWidthRequest="50"
+                                           WidthRequest="50"
+                                       HorizontalOptions="StartAndExpand" TextColor="Black"/>
                                     <Label Text="{Binding Producto.PrecioUnidad}"
+                                           HorizontalTextAlignment="Center"
                                        VerticalOptions="CenterAndExpand"
+                                           WidthRequest="50"
+                                           MinimumWidthRequest="50"
+                                       Margin="0,0,25,0"
                                        HorizontalOptions="EndAndExpand" TextColor="Black"/>
                                 </StackLayout>
                             </ViewCell>
@@ -38,8 +58,13 @@
                     </ListView.ItemTemplate>
                 </ListView>
             </StackLayout>
-            <StackLayout>
-                <Label Text="{Binding DetallesCompra.TotalCompra}" HorizontalOptions="Center"/>
+            <StackLayout HorizontalOptions="Center" VerticalOptions="End" Orientation="Horizontal">
+                <Label Text="El coste de la compra fue de: "
+                   FontSize="20" TextColor="Black" Margin="0,8,0,0"/>
+                <Label Text="{Binding DetallesCompra.TotalCompra}" 
+                   FontSize="30" TextColor="Orange"/>
+                <!--<Label Text="{Binding DetallesCompra.TotalCompra, StringFormat='El coste de la compra fue de {0}'}" HorizontalOptions="Center"
+                      FontSize="20" TextColor="Black" Margin="0,40,0,0"/>-->
             </StackLayout>
         </StackLayout>
     </ContentPage.Content>

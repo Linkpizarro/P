@@ -12,7 +12,8 @@
                 HorizontalOptions="CenterAndExpand" />
             <ListView ItemsSource="{Binding Productos}"
                     RowHeight="200"
-                    Margin="10,10,10,10">
+                    Margin="10,10,10,10"
+                    CachingStrategy="RetainElement">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
