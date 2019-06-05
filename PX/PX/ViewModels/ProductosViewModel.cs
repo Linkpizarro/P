@@ -22,12 +22,13 @@ namespace PX.ViewModels
         {
             this.repo = new RepositoryProductos();
             this.repoVentas = new RepositoryVentas();
-
-            //NOTA: "Task.Run()" carga en el CONSTRUCTOR un metodo ASINCRONO
             Task.Run(async () => {
-                await this.CargarProductos();                
+                await this.CargarProductos();
+                this.CargarNovedades();
+                this.CargarDestacados();
+                this.CargarArticulos();
+                this.ValidarCarro();
             });
-
         }
 
         
@@ -86,10 +87,6 @@ namespace PX.ViewModels
         {
             List<Producto> lista = await this.repo.GetProductos();
             this.Productos = new ObservableCollection<Producto>(lista);
-            this.CargarNovedades();
-            this.CargarDestacados();
-
-            this.CargarArticulos();
         }
         private ObservableCollection<Producto> _Productos;
         public ObservableCollection<Producto> Productos
@@ -102,7 +99,6 @@ namespace PX.ViewModels
             }
         }
 
-        //Comandos
         public Command MostrarDetalles
         {
             get
@@ -119,7 +115,6 @@ namespace PX.ViewModels
             }
         }
 
-        //-----CARRITO DE LA COMPRA-----/
         private void CargarArticulos()
         {
             SessionService session = App.Locator.SessionService;
@@ -162,7 +157,7 @@ namespace PX.ViewModels
                         this.TotalCarrito = this.Articulos.Sum(p => (int)p.Subtotal);
                     }
                     //-----FIN PRUEBA-----/
-
+                    this.ValidarCarro();
                     await Application.Current.MainPage.Navigation.PushModalAsync(view);
 
                     //NOTA: NO SE USA MessagingCenter!!!
@@ -184,6 +179,7 @@ namespace PX.ViewModels
                     Producto prod = producto as Producto;
                     this.Articulos.Remove(prod);                    
                     this.TotalCarrito = Articulos.Sum(p => (int)p.Subtotal);
+                    this.ValidarCarro();
                 });
             }
         }
@@ -219,6 +215,7 @@ namespace PX.ViewModels
                 });
             }
         }
+
         public Command RestarProducto
         {
             get
@@ -253,7 +250,6 @@ namespace PX.ViewModels
             }
         }
 
-        //-----PRUEBA: NO SE USA ESTAS PROPIEDADES!!!-----/
         private int _CantidadProducto;
         public int CantidadProducto
         {
@@ -277,7 +273,7 @@ namespace PX.ViewModels
             }
 
         }
-        //-----FIN PRUEBA-----/
+ 
 
         private int _TotalCarrito;
         public int TotalCarrito
@@ -291,7 +287,6 @@ namespace PX.ViewModels
 
         }
 
-        
         public Command ComprarCarrito
         {
             get
@@ -341,6 +336,56 @@ namespace PX.ViewModels
                 });
             }
         }
-        //-----FIN CARRITO DE LA COMPRA-----/
+
+        private String _Mensaje;
+        public String Mensaje
+        {
+            get { return this._Mensaje; }
+            set { this._Mensaje = value;OnPropertyChange("Mensaje"); }
+        }
+
+        private Boolean _CompraHabilitada;
+        public Boolean CompraHabilitada
+        {
+            get { return this._CompraHabilitada; }
+            set { this._CompraHabilitada = value; OnPropertyChange("CompraHabilitada"); }
+        }
+
+        private void ValidarCarro()
+        {
+            if (this.Articulos.Count == 0)
+            {
+                this.Mensaje = "No tienes ningún producto en tu carrito...";
+                this.CompraHabilitada = false;
+            }
+            else
+            {
+                this.Mensaje = "";
+                this.CompraHabilitada = true;
+            }
+        }
+
+        public Command Filtrar
+        {
+            get
+            {
+                return new Command(async (filtro) =>
+                {
+                    await this.CargarProductos();
+                    ProductosView view = new ProductosView();
+                    ProductosViewModel viewmodel =App.Locator.ProductosViewModel;
+                    if (filtro as string  != "todo")
+                    {
+                        viewmodel.Productos = new ObservableCollection<Producto>(this.Productos.Where(p => p.Tipo == filtro as string).ToList());
+                    }
+                    else
+                    {
+                        viewmodel.Productos = new ObservableCollection<Producto>(this.Productos.ToList());
+                    }   
+                    view.BindingContext = viewmodel;
+                    await Application.Current.MainPage.Navigation.PushModalAsync(view);
+                });
+            }
+        }
     }
 }

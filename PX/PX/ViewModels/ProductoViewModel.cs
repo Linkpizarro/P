@@ -63,6 +63,8 @@ namespace PX.ViewModels
                         this.Producto.Subtotal = this.Producto.Cantidad * (decimal)this.Producto.PrecioUnidad; //NOTA: Añadido porque se ha comentado en "Producto.cs" la propiedad extendida "Subtotal".
                         viewmodel.Articulos.Add(this.Producto);
                         viewmodel.TotalCarrito = viewmodel.Articulos.Sum(p => (int)p.Subtotal);
+                        viewmodel.Mensaje = "";
+                        viewmodel.CompraHabilitada = true;
                     }
                     else
                     {
@@ -70,6 +72,8 @@ namespace PX.ViewModels
                         this.Producto.Subtotal = this.Producto.Cantidad * (decimal)this.Producto.PrecioUnidad; //NOTA: Añadido porque se ha comentado en "Producto.cs" la propiedad extendida "Subtotal".
                         viewmodel.TotalCarrito = viewmodel.Articulos.Sum(p => (int)p.Subtotal);
                     }
+
+
 
                     //NOTA: NO SE USA MessagingCenter!!!
                     //MessagingCenter.Send<ProductosViewModel>(App.Locator.ProductosViewModel, "INSERTAR");

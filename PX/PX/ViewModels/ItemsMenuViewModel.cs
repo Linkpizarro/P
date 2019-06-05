@@ -33,12 +33,12 @@ namespace PX.ViewModels
             this.Items.Clear();
             var home = new ItemMenuPage() { Title = "Home", TypePage = typeof(MainPage),Icon ="casa.png" };
             this.Items.Add(home);
-            var products = new ItemMenuPage() { Title = "Productos", TypePage = typeof(ProductosView), Icon = "productos.png" };
-            this.Items.Add(products);
             if (App.Locator.SessionService.Cadena == null)
             {
                 var login = new ItemMenuPage() { Title = "Login", TypePage = typeof(LoginView), Icon = "login.png" };
                 this.Items.Add(login);
+                var register = new ItemMenuPage() { Title = "Registro", TypePage = typeof(RegistroView), Icon = "productos.png" };
+                this.Items.Add(register);
             }
             else
             {   

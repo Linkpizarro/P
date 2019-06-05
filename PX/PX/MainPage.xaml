@@ -124,23 +124,28 @@
                         </Grid.ColumnDefinitions>
                         <StackLayout Grid.Row="0" Grid.Column="0">
                             <Button BackgroundColor="IndianRed" HorizontalOptions="FillAndExpand"
-                                    VerticalOptions="FillAndExpand" Text="Consolas" />
+                                    VerticalOptions="FillAndExpand" Text="Consolas" CommandParameter="consola"
+                                    Command="{Binding BindingContext.Filtrar, Source={x:Reference VistaHome}}"/>
                         </StackLayout>
                         <StackLayout Grid.Row="0" Grid.Column="1">
                             <Button BackgroundColor="LightSkyBlue" HorizontalOptions="FillAndExpand"
-                                    VerticalOptions="FillAndExpand" Text="Juegos" />
+                                    VerticalOptions="FillAndExpand" Text="Juegos" CommandParameter="juego"
+                                    Command="{Binding BindingContext.Filtrar, Source={x:Reference VistaHome}}" />
                         </StackLayout>
                         <StackLayout Grid.Row="1" Grid.Column="0">
                             <Button BackgroundColor=" CadetBlue" HorizontalOptions="FillAndExpand"
-                                    VerticalOptions="FillAndExpand" Text="Accesorios" />
+                                    VerticalOptions="FillAndExpand" Text="Accesorios"
+                                    CommandParameter="accesorio"
+                                    Command="{Binding BindingContext.Filtrar, Source={x:Reference VistaHome}}"/>
                         </StackLayout>
                         <StackLayout Grid.Row="1" Grid.Column="1">
                             <Button BackgroundColor="LightCoral" HorizontalOptions="FillAndExpand"
-                                    VerticalOptions="FillAndExpand" Text="Proximamente" />
+                                    VerticalOptions="FillAndExpand" Text="Todos"  CommandParameter="todo"
+                                    Command="{Binding BindingContext.Filtrar, Source={x:Reference VistaHome}}"/>
                         </StackLayout>
                         <StackLayout Grid.Row="2" Grid.Column="0">
                             <Button BackgroundColor="LightPink" HorizontalOptions="FillAndExpand"
-                                    VerticalOptions="FillAndExpand" Text="Proximamente" />
+                                    VerticalOptions="FillAndExpand" Text="Proximamente"  />
                         </StackLayout>
                         <StackLayout Grid.Row="2" Grid.Column="1">
                             <Button BackgroundColor="CornflowerBlue" HorizontalOptions="FillAndExpand"

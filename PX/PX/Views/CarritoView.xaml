@@ -6,19 +6,20 @@
              xmlns:local="clr-namespace:PX"
              BindingContext="{Binding Source={x:Static local:App.Locator}, Path=ProductosViewModel}"
              x:Class="PX.Views.CarritoView">
-    <!-- NOTA: BindingContext="{Binding Source={x:Static local:App.Locator}, Path=ProductosViewModel}"-> NOTA: YA NO FUNCIONA: para ello en IoCConfiguration tiene que estar builder.RegisterType<ProductosViewModel>().SingleInstance();!!!!!! -->
-    <!-- NOTA: BindingContext="{Binding Source={x:Static local:App.Locator}, Path=SessionService}" -> FUNICIONA!!! -->
-
-    <ContentPage.Resources>
+    <!--<ContentPage.Resources>
         <ResourceDictionary>
             <coverters:ConvertidorSubtotal x:Key="convertidorsubtotal" />
         </ResourceDictionary>        
-    </ContentPage.Resources>
+    </ContentPage.Resources>-->
     <ContentPage.Content>
         <StackLayout Margin="0,20,0,0">
             <Label Text="Tu Carrito"
                 FontSize="40" TextColor="#4528A2" 
                 HorizontalOptions="CenterAndExpand" />
+            <StackLayout>
+                <Label Text="{Binding Mensaje}" TextColor="Orange" FontSize="18"
+                       HorizontalOptions="CenterAndExpand"/>
+            </StackLayout>
             <ListView ItemsSource="{Binding Articulos}"
                       x:Name="lsvarticulos" RowHeight="120">
                 <ListView.ItemTemplate>
@@ -75,7 +76,7 @@
                 <Label Text="{Binding BindingContext.TotalCarrito, Source={x:Reference vistacarrito}}" 
                    FontSize="30" TextColor="Orange"/>
             </StackLayout>
-            <Button Text="Comprar"  BackgroundColor="Orange" TextColor="White"              
+            <Button Text="Comprar"  BackgroundColor="Orange" TextColor="White" IsEnabled="{Binding CompraHabilitada}"           
                 Command="{Binding BindingContext.ComprarCarrito, Source={x:Reference vistacarrito}}" />
         </StackLayout>
     </ContentPage.Content>

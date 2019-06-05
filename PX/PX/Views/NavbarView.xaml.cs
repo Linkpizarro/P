@@ -41,6 +41,10 @@ namespace PX.Views
                 {
                     await Navigation.PushModalAsync(new LoginView());
                     IsPresented = false;
+                }else if (select.Title == "Registro")
+                {
+                    await Navigation.PushModalAsync(new RegistroView());
+                    IsPresented = false;
                 }
                 else
                 {

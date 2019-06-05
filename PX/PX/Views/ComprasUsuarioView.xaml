@@ -10,13 +10,14 @@
         <viewmodels:VentasViewModel/>
     </ContentPage.BindingContext>
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Tus Pedidos"
-                   FontSize="Large"
-                   TextColor="Black"
-                HorizontalOptions="CenterAndExpand" />
+        <StackLayout HorizontalOptions="FillAndExpand"
+                     VerticalOptions="FillAndExpand" Padding="5,5,5,5">
+            <StackLayout>
+                <Label Text="Tus Pedidos" TextColor="#4528A2" FontSize="35"
+                       HorizontalOptions="CenterAndExpand"/>
+            </StackLayout>
             <Label Text="{Binding Mensaje}" TextColor="Red"/>
-            <ListView ItemsSource="{Binding Ventas}">
+            <ListView ItemsSource="{Binding Ventas}" Margin="5,0,5,0">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
